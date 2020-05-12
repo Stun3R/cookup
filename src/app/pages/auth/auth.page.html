@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>auth</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button
+    [routerLink]="['/auth/local']"
+    expand="block"
+    fill="clear"
+    shape="round"
+  >
+    Sign in with local
+  </ion-button>
+  <ion-button
+    (click)="signIn('facebook')"
+    expand="block"
+    fill="clear"
+    shape="round"
+  >
+    Sign in with Facebook
+  </ion-button>
+  <ion-button
+    (click)="signIn('google')"
+    expand="block"
+    fill="clear"
+    shape="round"
+  >
+    Sign in with Google
+  </ion-button>
+</ion-content>

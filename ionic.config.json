@@ -1,0 +1,8 @@
+{
+  "name": "CookUp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "431f9e61"
+}

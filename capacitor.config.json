@@ -1,0 +1,13 @@
+{
+  "appId": "com.cookup.app",
+  "appName": "CookUp",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
