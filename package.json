@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "sync:ios": "ionic capacitor sync ios",
+    "run:ios": "ionic capacitor run ios -l --external",
     "commit": "git-cz"
   },
   "private": true,
