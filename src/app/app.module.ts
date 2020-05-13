@@ -19,8 +19,16 @@ export function jwtOptionsFactory(nativeStorage) {
     tokenGetter: async () => {
       return nativeStorage.getItem("jwt");
     },
-    whitelistedDomains: ["http://localhost:1337"],
-    blacklistedRoutes: ["http://localhost:1337/auth/local"],
+    whitelistedDomains: [
+      "http://localhost:1337",
+      "https://dev-cookup-api.herokuapp.com/",
+      "https://cookup-api.herokuapp.com/",
+    ],
+    blacklistedRoutes: [
+      "http://localhost:1337/auth/local",
+      "https://dev-cookup-api.herokuapp.com/auth/local",
+      "https://cookup-api.herokuapp.com/auth/local",
+    ],
   };
 }
 
