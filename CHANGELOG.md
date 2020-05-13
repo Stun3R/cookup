@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/Cook-Up/cookup/compare/v0.1.1...v0.1.2) (2020-05-13)
+
+
+### Bug Fixes
+
+* **apiurl:** add all env and local login ([084dcb6](https://github.com/Cook-Up/cookup/commit/084dcb6826a43d332ad484f5608f0af6ea3f9586))
+
 ### [0.1.1](https://github.com/Cook-Up/cookup/compare/v0.1.0...v0.1.1) (2020-05-13)
 
 
