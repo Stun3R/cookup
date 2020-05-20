@@ -1,1 +1,8 @@
-
+.navbar {
+  &__tab {
+    height: 4rem;
+    &-button {
+      --color-selected: black;
+    }
+  }
+}
