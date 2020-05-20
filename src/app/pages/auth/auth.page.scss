@@ -1,0 +1,38 @@
+.auth {
+  --background: url("../../../assets/background.jpeg") center / cover;
+  ion-grid,
+  ion-row {
+    height: 100%;
+  }
+  &__logo {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  &__connection {
+    margin: 0 auto -7rem;
+    width: 80%;
+
+    &-mail {
+      --background: var(--ion-color-medium);
+      --border-radius: 16px;
+    }
+
+    &-fb {
+      --background: #95abcc;
+      margin: 12px 0;
+      --border-radius: 16px;
+    }
+
+    &-google {
+      --background: #ffffff;
+      --color: black;
+      --border-radius: 16px;
+    }
+
+    &-text {
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
