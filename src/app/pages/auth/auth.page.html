@@ -1,32 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>auth</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-button
-    [routerLink]="['/auth/local']"
-    expand="block"
-    fill="clear"
-    shape="round"
-  >
-    Sign in with local
-  </ion-button>
-  <ion-button
-    (click)="signIn('facebook')"
-    expand="block"
-    fill="clear"
-    shape="round"
-  >
-    Sign in with Facebook
-  </ion-button>
-  <ion-button
-    (click)="signIn('google')"
-    expand="block"
-    fill="clear"
-    shape="round"
-  >
-    Sign in with Google
-  </ion-button>
+<ion-content class="auth">
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12">
+        <h1 class="auth__logo">Cook Up'</h1>
+        <div class="auth__connection">
+          <ion-button
+            [routerLink]="['/auth/local']"
+            expand="block"
+            fill="clear"
+            shape="round"
+            slot="start"
+            class="auth__connection-mail"
+          >
+            <span class="auth__connection-text">
+              Se connecter avec
+            </span>
+            <ion-icon slot="end" name="mail"></ion-icon>
+          </ion-button>
+          <ion-button
+            (click)="signIn('facebook')"
+            expand="block"
+            fill="clear"
+            shape="round"
+            class="auth__connection-fb"
+          >
+            <span class="auth__connection-text">
+              Se connecter avec
+            </span>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </ion-button>
+          <ion-button
+            (click)="signIn('google')"
+            expand="block"
+            fill="clear"
+            shape="round"
+            class="auth__connection-google"
+          >
+            <span class="auth__connection-text">
+              Se connecter avec
+            </span>
+            <ion-icon name="logo-google"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
