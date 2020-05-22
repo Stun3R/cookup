@@ -81,6 +81,57 @@ export class StrapiService {
   }
 
   /**
+   * Sends an email to a user with the link of your reset password page.
+   * This link contains an URL param code which is required to reset user password.
+   * Received link url format https://my-domain.com/rest-password?code=privateCode.
+   * @param email
+   * @param url Link that user will receive.
+   */
+  forgotPassword(email: string): Observable<any> {
+    return this.clearToken().pipe(
+      switchMap(() => {
+        return this.http
+          .post(`${this.apiUrl}/auth/forgot-password`, {
+            email,
+          })
+          .pipe(
+            switchMap(() => {
+              return this.navController.navigateRoot(["/auth/local"]);
+            })
+          );
+      })
+    );
+  }
+
+  /**
+   * Reset the user password.
+   * @param code Is the url params received from the email link (see forgot password).
+   * @param password
+   * @param passwordConfirmation
+   */
+  resetPassword(
+    code: string,
+    password: string,
+    passwordConfirmation: string
+  ): Observable<any> {
+    return this.clearToken().pipe(
+      switchMap(() => {
+        return this.http
+          .post(`${this.apiUrl}/auth/reset-password`, {
+            code,
+            password,
+            passwordConfirmation,
+          })
+          .pipe(
+            switchMap(() => {
+              return this.navController.navigateRoot(["/auth/local"]);
+            })
+          );
+      })
+    );
+  }
+
+  /**
    * Retrieve the connect provider URL
    * @param provider
    */
