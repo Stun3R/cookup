@@ -29,6 +29,25 @@ const routes: Routes = [
         (m) => m.AuthRegisterPageModule
       ),
   },
+  {
+    path: "auth/forgot",
+    loadChildren: () =>
+      import("./pages/auth-forgot/auth-forgot.module").then(
+        (m) => m.AuthForgotPageModule
+      ),
+  },
+  {
+    path: "auth/reset/:code",
+    loadChildren: () =>
+      import("./pages/auth-reset/auth-reset.module").then(
+        (m) => m.AuthResetPageModule
+      ),
+  },
+  {
+    path: "**",
+    redirectTo: "auth",
+    pathMatch: "full",
+  },
 ];
 @NgModule({
   imports: [

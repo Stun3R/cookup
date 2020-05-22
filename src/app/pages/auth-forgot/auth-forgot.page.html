@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/auth/local"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mot de passe oublié</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating"
+        >E-Mail <ion-text color="danger">*</ion-text></ion-label
+      >
+      <ion-input required formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="forgotForm.get('email').invalid && forgotForm.get('email').touched"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Please enter a valid email address.
+      </ion-text>
+    </ion-item>
+
+    <ion-button
+      block
+      color="primary"
+      type="submit"
+      [disabled]="forgotForm.invalid"
+    >
+      Login
+    </ion-button>
+  </form>
+</ion-content>
