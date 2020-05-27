@@ -21,7 +21,15 @@ export class AuthForgotPage implements OnInit {
     });
   }
 
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.forgotForm.controls;
+  }
+
   onSubmit() {
+    if (this.forgotForm.invalid) {
+      return;
+    }
     this.strapi.forgotPassword(this.forgotForm.get("email").value).subscribe();
   }
 }

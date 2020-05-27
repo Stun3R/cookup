@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { AuthLocalPageRoutingModule } from './auth-local-routing.module';
+import { AuthLocalPageRoutingModule } from "./auth-local-routing.module";
 
-import { AuthLocalPage } from './auth-local.page';
+import { AuthLocalPage } from "./auth-local.page";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
-    AuthLocalPageRoutingModule
+    AuthLocalPageRoutingModule,
   ],
-  declarations: [AuthLocalPage]
+  declarations: [AuthLocalPage],
 })
 export class AuthLocalPageModule {}

@@ -8,13 +8,62 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="login()" expand="block" fill="clear" shape="round">
-    Login
-  </ion-button>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">
+        Courriel
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="identifier" type="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="f.identifier.invalid && f.identifier.touched" lines="none">
+      <ion-text
+        *ngIf="f.identifier.errors.required"
+        color="danger"
+        class="form-error"
+      >
+        Email is required.
+      </ion-text>
+      <ion-text
+        *ngIf="f.identifier.errors.email"
+        color="danger"
+        class="form-error"
+      >
+        Please enter a valid email address.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Mot de passe
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        required
+        formControlName="password"
+        type="password"
+      ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="f.password.invalid && f.password.touched" lines="none">
+      <ion-text color="danger" class="form-error">
+        Please enter a valid password.
+      </ion-text>
+    </ion-item>
+
+    <ion-button
+      block
+      color="primary"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </ion-button>
+  </form>
   <ion-button
     [routerLink]="['/auth/forgot']"
     expand="block"
     fill="clear"
+    color="dark"
     shape="round"
   >
     Mot de passe oublié ?
