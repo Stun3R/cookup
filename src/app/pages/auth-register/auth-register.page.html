@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">
         Courriel
@@ -54,7 +54,7 @@
       block
       color="primary"
       type="submit"
-      [disabled]="loginForm.invalid"
+      [disabled]="registerForm.invalid"
     >
       Login
     </ion-button>
