@@ -10,8 +10,13 @@
   }
 
   &__connection {
-    margin: 0 auto -7rem;
-    width: 80%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+
+    &-layout {
+      margin-top: auto;
+    }
 
     &-mail {
       --background: var(--ion-color-medium);
@@ -33,6 +38,17 @@
     &-text {
       text-align: left;
       width: 100%;
+    }
+  }
+
+  &__signup {
+    text-align: center;
+    &-title {
+      margin-bottom: 8px;
+    }
+    &-link {
+      text-decoration: none;
+      color: black;
     }
   }
 }
