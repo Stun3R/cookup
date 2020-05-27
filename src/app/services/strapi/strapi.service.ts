@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { HttpClient } from "@angular/common/http";
 import { Platform, NavController } from "@ionic/angular";
-import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Observable, BehaviorSubject, from, of } from "rxjs";
-import { switchMap, map, take } from "rxjs/operators";
+import { Observable, BehaviorSubject, from, of, throwError } from "rxjs";
+import { switchMap, map, take, catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { Authentication, Provider, storageConfig } from "../../interfaces";
+import { ErrorService } from "../error/error.service";
 
 const helper = new JwtHelperService();
 
@@ -24,8 +24,8 @@ export class StrapiService {
     private nativeStorage: NativeStorage,
     private http: HttpClient,
     private plt: Platform,
-    private router: Router,
-    private navController: NavController
+    private navController: NavController,
+    private error: ErrorService
   ) {
     this.store = {
       key: "jwt",
@@ -74,6 +74,10 @@ export class StrapiService {
               this.userData.next(decoded);
               let storageObs = this.setToken(token);
               return storageObs;
+            }),
+            catchError((e) => {
+              let message = this.error.handleError(e);
+              return throwError(message);
             })
           );
       })
@@ -97,6 +101,10 @@ export class StrapiService {
           .pipe(
             switchMap(() => {
               return this.navController.navigateRoot(["/auth/local"]);
+            }),
+            catchError((e) => {
+              let message = this.error.handleError(e);
+              return throwError(message);
             })
           );
       })
@@ -125,6 +133,10 @@ export class StrapiService {
           .pipe(
             switchMap(() => {
               return this.navController.navigateRoot(["/auth/local"]);
+            }),
+            catchError((e) => {
+              let message = this.error.handleError(e);
+              return throwError(message);
             })
           );
       })
@@ -161,6 +173,10 @@ export class StrapiService {
               this.userData.next(decoded);
               let storageObs = this.setToken(token);
               return storageObs;
+            }),
+            catchError((e) => {
+              let message = this.error.handleError(e);
+              return throwError(message);
             })
           );
       })

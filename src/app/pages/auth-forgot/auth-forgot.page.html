@@ -10,16 +10,21 @@
 <ion-content>
   <form [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-label position="floating"
-        >E-Mail <ion-text color="danger">*</ion-text></ion-label
-      >
-      <ion-input required formControlName="email" type="text"></ion-input>
+      <ion-label position="floating">
+        E-Mail
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required formControlName="email" type="email"></ion-input>
     </ion-item>
-    <ion-item
-      *ngIf="forgotForm.get('email').invalid && forgotForm.get('email').touched"
-      lines="none"
-    >
-      <ion-text color="danger" class="form-error">
+    <ion-item *ngIf="f.email.invalid && f.email.touched" lines="none">
+      <ion-text
+        *ngIf="f.email.errors.required"
+        color="danger"
+        class="form-error"
+      >
+        Email is required.
+      </ion-text>
+      <ion-text *ngIf="f.email.errors.email" color="danger" class="form-error">
         Please enter a valid email address.
       </ion-text>
     </ion-item>
