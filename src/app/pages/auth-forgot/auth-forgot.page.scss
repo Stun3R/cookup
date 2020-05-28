@@ -1,0 +1,46 @@
+.auth {
+  --background: url("../../../assets/background.jpeg") center / cover;
+  &-header {
+    ion-toolbar {
+      --background: transparent;
+      --ion-color-base: transparent !important;
+      --border-width: 0;
+    }
+
+    /* Remove bottom border on md */
+    .header-md::after {
+      background-image: none;
+    }
+  }
+  ion-grid,
+  ion-row {
+    height: 100%;
+  }
+  &__logo {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &__connection {
+    display: flex;
+    flex-direction: column;
+
+    &-layout {
+      margin-top: 50%;
+    }
+
+    &__form {
+      ion-item {
+        --padding-start: 0;
+        --background: none;
+      }
+
+      &-btn {
+        margin-top: 2rem;
+        --background: #ffffff;
+        --color: black;
+        --border-radius: 16px;
+      }
+    }
+  }
+}
