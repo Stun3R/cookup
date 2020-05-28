@@ -1,14 +1,18 @@
 import { Injectable } from "@angular/core";
-import { ToastController } from "@ionic/angular";
+import { ToastController, AlertController } from "@ionic/angular";
 import { HttpErrorResponse } from "@angular/common/http";
+import { ErrorMode } from "src/app/interfaces";
 
 @Injectable({
   providedIn: "root",
 })
 export class ErrorService {
-  constructor(private toastController: ToastController) {}
+  constructor(
+    private toastController: ToastController,
+    private alertController: AlertController
+  ) {}
 
-  handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse, mode: ErrorMode) {
     let message: string;
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -27,17 +31,33 @@ export class ErrorService {
           message = error.error.message[0].messages[0].id;
       }
     }
-    this.show(message);
+    if (mode === ErrorMode.Toast) this.presentToast(message);
+    else this.presentAlert(message);
     // return an observable with a user-facing error message
     return message;
   }
 
-  private async show(message: string) {
+  private async presentToast(message: string) {
     const toast = await this.toastController.create({
       color: "danger",
       message,
       duration: 2000,
     });
     toast.present();
+  }
+
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: "Erreur",
+      message,
+      buttons: [
+        {
+          text: "OK",
+          cssClass: "info",
+        },
+      ],
+    });
+
+    await alert.present();
   }
 }

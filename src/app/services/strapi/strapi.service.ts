@@ -6,7 +6,12 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { Observable, BehaviorSubject, from, of, throwError } from "rxjs";
 import { switchMap, map, take, catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
-import { Authentication, Provider, storageConfig } from "../../interfaces";
+import {
+  Authentication,
+  Provider,
+  storageConfig,
+  ErrorMode,
+} from "../../interfaces";
 import { ErrorService } from "../error/error.service";
 
 const helper = new JwtHelperService();
@@ -76,7 +81,7 @@ export class StrapiService {
               return storageObs;
             }),
             catchError((e) => {
-              let message = this.error.handleError(e);
+              let message = this.error.handleError(e, ErrorMode.Alert);
               return throwError(message);
             })
           );
@@ -103,7 +108,7 @@ export class StrapiService {
               return this.navController.navigateRoot(["/auth/local"]);
             }),
             catchError((e) => {
-              let message = this.error.handleError(e);
+              let message = this.error.handleError(e, ErrorMode.Alert);
               return throwError(message);
             })
           );
@@ -135,7 +140,7 @@ export class StrapiService {
               return this.navController.navigateRoot(["/auth/local"]);
             }),
             catchError((e) => {
-              let message = this.error.handleError(e);
+              let message = this.error.handleError(e, ErrorMode.Alert);
               return throwError(message);
             })
           );
@@ -175,7 +180,7 @@ export class StrapiService {
               return storageObs;
             }),
             catchError((e) => {
-              let message = this.error.handleError(e);
+              let message = this.error.handleError(e, ErrorMode.Alert);
               return throwError(message);
             })
           );
