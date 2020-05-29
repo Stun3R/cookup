@@ -6,9 +6,10 @@ import { FormsModule } from "@angular/forms";
 import { PlanningPage } from "./planning.page";
 
 import { PlanningPageRoutingModule } from "./planning-routing.module";
+import { PlanningCardComponent } from "src/app/components/planning-card/planning-card.component";
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, PlanningPageRoutingModule],
-  declarations: [PlanningPage],
+  declarations: [PlanningPage, PlanningCardComponent],
 })
 export class PlanningPageModule {}
