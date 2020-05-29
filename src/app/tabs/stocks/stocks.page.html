@@ -1,8 +1,51 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title>
+    <ion-title size="large" class="stocks__toolbar-title">
       Stocks
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <section class="stocks__section">
+      <div class="stocks__categories">
+        <span class="stocks__categories-type">
+          Tous
+          <ion-badge
+            class="stocks__categories-badge stocks__categories-select"
+            color="light"
+          >
+            39
+          </ion-badge>
+        </span>
+        <ion-text [color]="true ? 'secondary' : 'medium'">•</ion-text>
+      </div>
+      <div class="stocks__categories">
+        <span class="stocks__categories-type">
+          Frigo
+          <ion-badge class="stocks__categories-badge" color="light">
+            12
+          </ion-badge>
+        </span>
+        <ion-text [color]="false ? 'secondary' : 'medium'">•</ion-text>
+      </div>
+      <div class="stocks__categories">
+        <span class="stocks__categories-type">
+          Congélateur
+          <ion-badge class="stocks__categories-badge" color="light">
+            16
+          </ion-badge>
+        </span>
+        <ion-text [color]="false ? 'secondary' : 'medium'">•</ion-text>
+      </div>
+      <div class="stocks__categories">
+        <span class="stocks__categories-type">
+          Cellier
+          <ion-badge class="stocks__categories-badge" color="light">
+            11
+          </ion-badge>
+        </span>
+        <ion-text [color]="false ? 'secondary' : 'medium'">•</ion-text>
+      </div>
+    </section>
   </ion-toolbar>
 </ion-header>
 
