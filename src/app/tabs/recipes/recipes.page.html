@@ -1,8 +1,101 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title>
+    <ion-title size="large" class="recipes__toolbar-title">
       Recettes
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <section class="recipes__section">
+      <div class="recipes__section-layout">
+        <div class="recipes__category recipes__category-select">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/all.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="true ? 'dark' : 'medium'"
+        >
+          Tous
+        </ion-text>
+      </div>
+
+      <div class="recipes__section-layout">
+        <div class="recipes__category">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/snack.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="false ? 'dark' : 'medium'"
+        >
+          Apéritifs
+        </ion-text>
+      </div>
+
+      <div class="recipes__section-layout">
+        <div class="recipes__category">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/salad.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="false ? 'dark' : 'medium'"
+        >
+          Entrées
+        </ion-text>
+      </div>
+
+      <div class="recipes__section-layout">
+        <div class="recipes__category">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/dish.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="false ? 'dark' : 'medium'"
+        >
+          Plats
+        </ion-text>
+      </div>
+
+      <div class="recipes__section-layout">
+        <div class="recipes__category">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/dessert.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="false ? 'dark' : 'medium'"
+        >
+          Desserts
+        </ion-text>
+      </div>
+
+      <div class="recipes__section-layout">
+        <div class="recipes__category">
+          <ion-icon
+            class="recipes__category-icon"
+            src="assets/icon/recipe-categories/drink.svg"
+          ></ion-icon>
+        </div>
+        <ion-text
+          class="recipes__category-text"
+          [color]="false ? 'dark' : 'medium'"
+        >
+          Boissons
+        </ion-text>
+      </div>
+    </section>
   </ion-toolbar>
 </ion-header>
 
