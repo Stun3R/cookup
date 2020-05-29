@@ -1,3 +1,8 @@
+export enum ErrorMode {
+  Toast,
+  Alert,
+}
+
 export type Provider = "google" | "facebook" | "instagram";
 
 export interface storageConfig {

@@ -1,22 +1,65 @@
-<ion-header>
+<ion-header class="auth-header" mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="auth"></ion-back-button>
     </ion-buttons>
-    <ion-title>auth-local</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button (click)="login()" expand="block" fill="clear" shape="round">
-    Login
-  </ion-button>
-  <ion-button
-    [routerLink]="['/auth/forgot']"
-    expand="block"
-    fill="clear"
-    shape="round"
-  >
-    Mot de passe oublié ?
-  </ion-button>
+<ion-content class="auth" fullscreen [scrollY]="false">
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="10" class="ion-justify-content-center auth__connection">
+        <h1 class="auth__logo">Se connecter</h1>
+        <form
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          class="auth__connection__form"
+        >
+          <ion-item>
+            <ion-label position="floating">
+              Courriel
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              required
+              formControlName="identifier"
+              type="email"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">
+              Mot de passe
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              required
+              formControlName="password"
+              type="password"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button
+            expand="block"
+            color="primary"
+            type="submit"
+            [disabled]="loginForm.invalid"
+            class="auth__connection__form-btn"
+          >
+            Login
+          </ion-button>
+        </form>
+        <ion-button
+          [routerLink]="['/auth/forgot']"
+          expand="block"
+          fill="clear"
+          color="dark"
+          shape="round"
+        >
+          Mot de passe oublié ?
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

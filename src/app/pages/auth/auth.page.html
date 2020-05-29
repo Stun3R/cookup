@@ -1,15 +1,14 @@
 <ion-content class="auth">
   <ion-grid fixed>
-    <ion-row class="ion-align-items-center">
-      <ion-col size="12">
-        <h1 class="auth__logo">Cook Up'</h1>
-        <div class="auth__connection">
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="10" class="ion-justify-content-center auth__connection">
+        <div class="auth__connection-layout">
+          <h1 class="auth__logo">Cook Up'</h1>
           <ion-button
             [routerLink]="['/auth/local']"
             expand="block"
             fill="clear"
             shape="round"
-            slot="start"
             class="auth__connection-mail"
           >
             <span class="auth__connection-text">
@@ -42,6 +41,14 @@
             <ion-icon name="logo-google"></ion-icon>
           </ion-button>
         </div>
+      </ion-col>
+      <ion-col size="12" class="auth__signup">
+        <h6 class="auth__signup-title">
+          Pas encore inscrit ?
+        </h6>
+        <a class="auth__signup-link" [routerLink]="['/auth/register']"
+          >Créez un compte maintenant</a
+        >
       </ion-col>
     </ion-row>
   </ion-grid>
