@@ -11,29 +11,30 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { HttpClientModule } from "@angular/common/http";
-import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { UserPreferencesPage } from "./modals/user-preferences/user-preferences.page";
+import { StorageService } from "./services/storage/storage.service";
 
-export function jwtOptionsFactory(nativeStorage) {
+export function jwtOptionsFactory(storage: StorageService) {
   return {
     tokenGetter: async () => {
-      return nativeStorage.getItem("jwt");
+      return storage.getItem("jwt");
     },
     whitelistedDomains: [
-      "http://localhost:1337",
-      "https://dev-cookup-api.herokuapp.com/",
-      "https://cookup-api.herokuapp.com/",
+      "localhost:1337",
+      "dev-cookup-api.herokuapp.com",
+      "cookup-api.herokuapp.com",
     ],
     blacklistedRoutes: [
-      "http://localhost:1337/auth/local",
-      "https://dev-cookup-api.herokuapp.com/auth/local",
-      "https://cookup-api.herokuapp.com/auth/local",
+      "localhost:1337/auth/local",
+      "dev-cookup-api.herokuapp.com/auth/local",
+      "cookup-api.herokuapp.com/auth/local",
     ],
   };
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserPreferencesPage],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -44,7 +45,7 @@ export function jwtOptionsFactory(nativeStorage) {
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        deps: [NativeStorage],
+        deps: [StorageService],
       },
     }),
   ],
@@ -52,7 +53,7 @@ export function jwtOptionsFactory(nativeStorage) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    NativeStorage,
+    StorageService,
     SafariViewController,
   ],
   bootstrap: [AppComponent],
