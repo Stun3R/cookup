@@ -300,7 +300,11 @@ export class StrapiService {
     contentTypePluralized: string,
     id: string
   ): Observable<Object> {
-    return this.http.delete(`${this.apiUrl}/${contentTypePluralized}/${id}`);
+    return this.request(
+      "delete",
+      `/${contentTypePluralized}/${id}`,
+      ErrorMode.Toast
+    );
   }
 
   getUser() {
