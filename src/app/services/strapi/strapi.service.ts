@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Platform, NavController } from "@ionic/angular";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Observable, BehaviorSubject, from, of, throwError } from "rxjs";
@@ -56,6 +56,17 @@ export class StrapiService {
     );
   }
 
+  request<T>(method: string, url: string, mode: ErrorMode, options?: Object) {
+    console.log(`${this.apiUrl}${url}`);
+    return this.http.request<T>(method, `${this.apiUrl}${url}`, options).pipe(
+      catchError((e) => {
+        console.log(e);
+        let message = this.error.handleError(e, mode);
+        return throwError(message);
+      })
+    );
+  }
+
   /**
    * Login by getting an authentication token.
    * @param identifier Can either be an email or a username.
@@ -67,24 +78,23 @@ export class StrapiService {
   }): Observable<any> {
     return this.clearToken().pipe(
       switchMap(() => {
-        return this.http
-          .post<Authentication>(`${this.apiUrl}/auth/local`, credentials)
-          .pipe(
-            take(1),
-            map((res) => {
-              return res.jwt;
-            }),
-            switchMap((token) => {
-              let decoded = helper.decodeToken(token);
-              this.userData.next(decoded);
-              let storageObs = this.setToken(token);
-              return storageObs;
-            }),
-            catchError((e) => {
-              let message = this.error.handleError(e, ErrorMode.Alert);
-              return throwError(message);
-            })
-          );
+        return this.request<Authentication>(
+          "post",
+          "/auth/local",
+          ErrorMode.Alert,
+          { body: credentials }
+        ).pipe(
+          take(1),
+          map((res: Authentication) => {
+            return res.jwt;
+          }),
+          switchMap((token) => {
+            let decoded = helper.decodeToken(token);
+            this.userData.next(decoded);
+            let storageObs = this.setToken(token);
+            return storageObs;
+          })
+        );
       })
     );
   }
@@ -99,19 +109,18 @@ export class StrapiService {
   forgotPassword(email: string): Observable<any> {
     return this.clearToken().pipe(
       switchMap(() => {
-        return this.http
-          .post(`${this.apiUrl}/auth/forgot-password`, {
-            email,
+        return this.request<Object>(
+          "post",
+          "/auth/forgot-password",
+          ErrorMode.Alert,
+          {
+            body: email,
+          }
+        ).pipe(
+          switchMap(() => {
+            return this.navController.navigateRoot(["/auth/local"]);
           })
-          .pipe(
-            switchMap(() => {
-              return this.navController.navigateRoot(["/auth/local"]);
-            }),
-            catchError((e) => {
-              let message = this.error.handleError(e, ErrorMode.Alert);
-              return throwError(message);
-            })
-          );
+        );
       })
     );
   }
@@ -129,21 +138,22 @@ export class StrapiService {
   ): Observable<any> {
     return this.clearToken().pipe(
       switchMap(() => {
-        return this.http
-          .post(`${this.apiUrl}/auth/reset-password`, {
-            code,
-            password,
-            passwordConfirmation,
+        return this.request<Object>(
+          "post",
+          "/auth/reset-password",
+          ErrorMode.Toast,
+          {
+            body: {
+              code,
+              password,
+              passwordConfirmation,
+            },
+          }
+        ).pipe(
+          switchMap(() => {
+            return this.navController.navigateRoot(["/auth/local"]);
           })
-          .pipe(
-            switchMap(() => {
-              return this.navController.navigateRoot(["/auth/local"]);
-            }),
-            catchError((e) => {
-              let message = this.error.handleError(e, ErrorMode.Alert);
-              return throwError(message);
-            })
-          );
+        );
       })
     );
   }
@@ -164,27 +174,136 @@ export class StrapiService {
   authenticateProvider(provider: Provider, params: any): Observable<any> {
     return this.clearToken().pipe(
       switchMap(() => {
-        return this.http
-          .get<Authentication>(`${this.apiUrl}/auth/${provider}/callback`, {
+        return this.request<Authentication>(
+          "get",
+          `/auth/${provider}/callback`,
+          ErrorMode.Alert,
+          {
             params: <any>params,
+          }
+        ).pipe(
+          take(1),
+          map((res: Authentication) => {
+            return res.jwt;
+          }),
+          switchMap((token) => {
+            let decoded = helper.decodeToken(token);
+            this.userData.next(decoded);
+            let storageObs = this.setToken(token);
+            return storageObs;
+          }),
+          catchError((e) => {
+            let message = this.error.handleError(e, ErrorMode.Alert);
+            return throwError(message);
           })
-          .pipe(
-            take(1),
-            map((res) => {
-              return res.jwt;
-            }),
-            switchMap((token) => {
-              let decoded = helper.decodeToken(token);
-              this.userData.next(decoded);
-              let storageObs = this.setToken(token);
-              return storageObs;
-            }),
-            catchError((e) => {
-              let message = this.error.handleError(e, ErrorMode.Alert);
-              return throwError(message);
-            })
-          );
+        );
       })
+    );
+  }
+
+  /**
+   * List entries
+   * @param contentTypePluralized
+   * @param params Filter and order queries.
+   */
+  getEntries(
+    contentTypePluralized: string,
+    params?: HttpParams
+  ): Observable<Object[]> {
+    return this.request<Object[]>(
+      "get",
+      `/${contentTypePluralized}`,
+      ErrorMode.Toast,
+      { params }
+    );
+  }
+
+  /**
+   * Get the total count of entries with the provided criteria
+   * @param contentType
+   * @param params Filter and order queries.
+   */
+  public getEntryCount(
+    contentTypePluralized: string,
+    params?: HttpParams
+  ): Observable<Object> {
+    return this.request<Object>(
+      "get",
+      `/${contentTypePluralized}/count`,
+      ErrorMode.Toast,
+      {
+        params,
+      }
+    );
+  }
+
+  /**
+   * Get a specific entry
+   * @param contentTypePluralized Type of entry pluralized
+   * @param id ID of entry
+   */
+  public getEntry(
+    contentTypePluralized: string,
+    id: string
+  ): Observable<Object> {
+    return this.request<Object>(
+      "get",
+      `/${contentTypePluralized}/${id}`,
+      ErrorMode.Toast
+    );
+  }
+
+  /**
+   * Create data
+   * @param contentTypePluralized Type of entry pluralized
+   * @param data New entry
+   */
+  public createEntry(
+    contentTypePluralized: string,
+    body: Object
+  ): Observable<Object> {
+    return this.request<Object>(
+      "post",
+      `/${contentTypePluralized}`,
+      ErrorMode.Toast,
+      {
+        body,
+      }
+    );
+  }
+
+  /**
+   * Update data
+   * @param contentTypePluralized Type of entry pluralized
+   * @param id ID of entry
+   * @param data
+   */
+  public updateEntry(
+    contentTypePluralized: string,
+    id: string,
+    body: Object
+  ): Observable<Object> {
+    return this.request<Object>(
+      "put",
+      `/${contentTypePluralized}/${id}`,
+      ErrorMode.Toast,
+      { body }
+    );
+  }
+
+  /**
+   * Delete an entry
+   * @param contentTypePluralized Type of entry pluralized
+   * @param id ID of entry
+   */
+  public deleteEntry(
+    contentTypePluralized: string,
+    id: string
+  ): Observable<Object> {
+    return this.request(
+      "delete",
+      `/${contentTypePluralized}/${id}`,
+      ErrorMode.Toast
     );
   }
 
