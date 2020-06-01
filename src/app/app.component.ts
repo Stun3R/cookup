@@ -6,16 +6,14 @@ import {
   AlertController,
   LoadingController,
 } from "@ionic/angular";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { StrapiService } from "./services/strapi/strapi.service";
 import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
-import { Plugins } from "@capacitor/core";
+import { Plugins, StatusBarStyle } from "@capacitor/core";
 import * as qs from "qs";
 import { Router } from "@angular/router";
 import { Provider } from "./interfaces";
 
-const { App } = Plugins;
+const { App, StatusBar, SplashScreen, Browser } = Plugins;
 
 @Component({
   selector: "app-root",
@@ -25,8 +23,6 @@ const { App } = Plugins;
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private navController: NavController,
     private strapi: StrapiService,
     private safariViewController: SafariViewController,
@@ -51,13 +47,13 @@ export class AppComponent {
       } else {
         this.navController.navigateRoot("/login");
       }
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      StatusBar.setStyle({ style: StatusBarStyle.Light });
+      SplashScreen.hide();
     });
   }
 
   // TODO: Clean code -> PresentAlert / Loading global
-  async handleOpenURL(url) {
+  async handleOpenURL(url: any) {
     if (url.startsWith("cookup://auth/provider")) {
       this.connectWithProvider(url);
     }
@@ -67,8 +63,8 @@ export class AppComponent {
     }
   }
 
-  async connectWithProvider(url) {
-    this.safariViewController.hide();
+  async connectWithProvider(url: any) {
+    Browser.close();
     this.presentLoading();
     let provider: Provider = url.substring(
       url.lastIndexOf("/") + 1,

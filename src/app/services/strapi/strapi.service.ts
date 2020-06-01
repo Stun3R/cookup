@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Platform, NavController } from "@ionic/angular";
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -13,6 +12,7 @@ import {
   ErrorMode,
 } from "../../interfaces";
 import { ErrorService } from "../error/error.service";
+import { StorageService } from "../storage/storage.service";
 
 const helper = new JwtHelperService();
 
@@ -26,7 +26,7 @@ export class StrapiService {
   private userData = new BehaviorSubject(null);
 
   constructor(
-    private nativeStorage: NativeStorage,
+    private storage: StorageService,
     private http: HttpClient,
     private plt: Platform,
     private navController: NavController,
@@ -42,7 +42,7 @@ export class StrapiService {
     let platformObs = from(this.plt.ready());
     this.user = platformObs.pipe(
       switchMap(() => {
-        return this.nativeStorage.getItem(this.store.key);
+        return this.storage.getItem(this.store.key);
       }),
       map((token) => {
         if (token) {
@@ -57,10 +57,8 @@ export class StrapiService {
   }
 
   request<T>(method: string, url: string, mode: ErrorMode, options?: Object) {
-    console.log(`${this.apiUrl}${url}`);
     return this.http.request<T>(method, `${this.apiUrl}${url}`, options).pipe(
       catchError((e) => {
-        console.log(e);
         let message = this.error.handleError(e, mode);
         return throwError(message);
       })
@@ -318,10 +316,10 @@ export class StrapiService {
   }
 
   setToken(token: string): Observable<any> {
-    return from(this.nativeStorage.setItem(this.store.key, token));
+    return from(this.storage.setItem(this.store.key, token));
   }
 
   clearToken(): Observable<any> {
-    return from(this.nativeStorage.remove(this.store.key));
+    return from(this.storage.clear());
   }
 }
