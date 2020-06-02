@@ -40,6 +40,8 @@
   &__card {
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: unset;
 
     &-section {
       width: 100%;
@@ -53,6 +55,7 @@
 
     &-title {
       font-weight: 500;
+      margin: auto 0;
     }
 
     &-quantity {

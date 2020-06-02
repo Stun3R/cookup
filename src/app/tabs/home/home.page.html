@@ -19,4 +19,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content class="home__content">
+  <ion-text color="dark">
+    <h5 class="home__title">
+      État de la liste de course
+    </h5>
+  </ion-text>
+  <ion-card class="home__card">
+    <ion-item class="home__card-content">
+      <ion-icon
+        class="home__card-icon"
+        src="assets/icon/market.svg"
+        slot="start"
+      >
+      </ion-icon>
+      <ion-text class="home__card-text">
+        Votre liste de course est prête
+      </ion-text>
+      <ion-button slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>
