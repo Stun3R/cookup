@@ -1078,34 +1078,6 @@
   dependencies:
     "@types/cordova" latest
 
-"@ionic-native/native-storage@^5.25.0":
-  version "5.25.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/native-storage/-/native-storage-5.25.0.tgz#8243ba184e2ce0c6214b6ec99f91823d719e2c69"
-  integrity sha512-Rvm4e0A7aEtvWkVmO6EkdfctxXnDNLGvj7pzH6E6UF0hboC65uQbasw3ZSq9i8Nljle83g1+GTME/vXxo974mA==
-  dependencies:
-    "@types/cordova" latest
-
-"@ionic-native/safari-view-controller@^5.25.0":
-  version "5.25.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/safari-view-controller/-/safari-view-controller-5.25.0.tgz#ffff9077941719ab295b8324ac1df327e8c5d526"
-  integrity sha512-M56CYnLWw++k3Z0G6Oukabc3znvf2Cw4V8pFV0+ZEzEKS/rN5BfJLv035z1gtL+utO3XFcA2VYil0PQ2RWYRGw==
-  dependencies:
-    "@types/cordova" latest
-
-"@ionic-native/splash-screen@^5.0.0":
-  version "5.25.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.25.0.tgz#849c3f269edcc4f234021b72d725dca335bae73a"
-  integrity sha512-Xkzxsi9IzstYxRbD2DfSwRemLBQllMpSrl0aMjAiQtpL13xF+W3D833TmJFpnF0P3awxbtL/HiQ/FI4KMfzaWQ==
-  dependencies:
-    "@types/cordova" latest
-
-"@ionic-native/status-bar@^5.0.0":
-  version "5.25.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-5.25.0.tgz#88c0bb24e58ec0c029f36d19ac6719bd1eae4b3c"
-  integrity sha512-VGE64vY1tbaEAcovgJNvmTmaVF9+xIinZJSmxY2cTx7E4A6Zo2Cn0guk+gtKlCHxbsbghPSYMVwWnj70mbhh9A==
-  dependencies:
-    "@types/cordova" latest
-
 "@ionic/angular-toolkit@^2.1.1":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ionic/angular-toolkit/-/angular-toolkit-2.2.0.tgz#0960898113a6022d0736aaa734c05af2c02ae508"
@@ -3029,16 +3001,6 @@ cordova-plugin-customurlscheme@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/cordova-plugin-customurlscheme/-/cordova-plugin-customurlscheme-5.0.1.tgz#4af193f1944516dc4a9855fae8be7b54fe36d83a"
   integrity sha512-Nn3+MUrEGfBSFzkC9s5izzOcmpVy8Pya5oYF+CkcdqAlsqL7EqpUan3Q0Eold4EWFisVG5jRCg0XjyxL4uHGfw==
-
-cordova-plugin-nativestorage@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-nativestorage/-/cordova-plugin-nativestorage-2.3.2.tgz#d6a1d50632aff2a70227102f68bc605e91aabca2"
-  integrity sha512-olg/BzYRk0NGbKQ5f7rf21RYQEyJI19CCZn6RpVMO9/kbRRFqae/6ixjDNy81dXSu2TQ42brjBddGe1Qpn5ViA==
-
-cordova-plugin-safariviewcontroller@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-safariviewcontroller/-/cordova-plugin-safariviewcontroller-1.6.0.tgz#7a86c28e946d52eddd662cfa0c9a7b2247cdc675"
-  integrity sha512-TSrVTTdIjCb1iK+FT0GSnfVhmEY5oRzB2yhlwSnxgwxhTrFHDnfTXrX4KKHWaszxGnMKNFuUFTv8K+fc0GNqEg==
 
 core-js-compat@^3.6.2:
   version "3.6.5"

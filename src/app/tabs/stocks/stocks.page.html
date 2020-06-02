@@ -49,4 +49,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content class="stocks__content">
+  <ion-searchbar placeholder="Rechercher un aliment..."></ion-searchbar>
+
+  <ion-card class="stocks__card">
+    <ion-item>
+      <ion-icon src="assets/icon/food-categories/frozen.svg" slot="start">
+      </ion-icon>
+      <div class="stocks__card-section">
+        <div class="stocks__card-content stocks__card-mb">
+          <ion-text class="stocks__card-title">
+            Pizza
+          </ion-text>
+          <span class="stocks__card-quantity">
+            <ion-text class="stocks__card-title">300g</ion-text>
+          </span>
+        </div>
+        <div class="stocks__card-content">
+          <ion-text class="stocks__card-expiry" color="medium">
+            Expire le : 09/06/2020
+          </ion-text>
+          <ion-text class="stocks__card-categories" color="medium">
+            Congélateur
+          </ion-text>
+        </div>
+      </div>
+    </ion-item>
+  </ion-card>
+</ion-content>
