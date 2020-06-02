@@ -32,4 +32,51 @@
       color: var(--ion-color-dark);
     }
   }
+
+  &__content {
+    --background: #f1f1f6;
+  }
+
+  &__card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &-section {
+      width: 100%;
+      margin: 15px 8px 15px 0;
+    }
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-title {
+      font-weight: 500;
+    }
+
+    &-quantity {
+      padding: 3px 8px;
+      border-radius: 12px;
+      background-color: var(--ion-color-secondary);
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    &-expiry {
+      font-size: 0.75rem;
+    }
+
+    &-categories {
+      font-size: 0.75rem;
+    }
+
+    &-mb {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+ion-item {
+  --inner-border-width: 0;
 }

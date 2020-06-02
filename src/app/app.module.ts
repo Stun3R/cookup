@@ -3,16 +3,12 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
 
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { HttpClientModule } from "@angular/common/http";
 import { JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
-import { UserPreferencesPage } from "./modals/user-preferences/user-preferences.page";
 import { StorageService } from "./services/storage/storage.service";
 
 export function jwtOptionsFactory(storage: StorageService) {
@@ -34,7 +30,7 @@ export function jwtOptionsFactory(storage: StorageService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, UserPreferencesPage],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -50,11 +46,8 @@ export function jwtOptionsFactory(storage: StorageService) {
     }),
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     StorageService,
-    SafariViewController,
   ],
   bootstrap: [AppComponent],
 })
