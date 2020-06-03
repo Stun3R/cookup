@@ -4,5 +4,8 @@
     &-button {
       --color-selected: black;
     }
+    &-safearea {
+      padding-bottom: calc(var(--ion-safe-area-bottom) + 1rem);
+    }
   }
 }
