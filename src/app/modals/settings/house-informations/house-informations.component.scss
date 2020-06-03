@@ -1,0 +1,27 @@
+.updatehouse {
+  &__btn {
+    &-editable {
+      font-weight: 600;
+    }
+  }
+  &__form {
+    ion-item {
+      --padding-start: 0;
+      --background: none;
+    }
+
+    &-btn {
+      margin-top: 2rem;
+      --background: #ffffff;
+      --color: black;
+      --border-radius: 16px;
+    }
+  }
+}
+
+ion-content {
+  --ion-font-family: "SFProText";
+}
+.input-label {
+  display: inline-block;
+}

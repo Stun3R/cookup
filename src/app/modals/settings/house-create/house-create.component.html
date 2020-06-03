@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" color="info">
+        <ion-icon
+          style="margin-right: 0;"
+          slot="start"
+          name="chevron-back"
+        ></ion-icon>
+        Retour
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <h1>Nom et jour de course de la maison</h1>
+    <p>
+      Attribuez un nom à votre maison afin de l'identifier plus facilement. Le
+      jour de course correspond au jour où la liste de course doit être générée
+    </p>
+  </div>
+
+  <form
+    class="createhouse__form"
+    [formGroup]="createHomeForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <ion-item style="margin-bottom: 1rem;">
+      <ion-label position="floating">
+        Nom de maison<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input maxlength="20" formControlName="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        Jour de course
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select formControlName="list_at" interface="popover">
+        <ion-select-option [value]="1">Lundi</ion-select-option>
+        <ion-select-option [value]="2">Mardi</ion-select-option>
+        <ion-select-option [value]="3">Mercredi</ion-select-option>
+        <ion-select-option [value]="4">Jeudi</ion-select-option>
+        <ion-select-option [value]="5">Vendredi</ion-select-option>
+        <ion-select-option [value]="6">Samedi</ion-select-option>
+        <ion-select-option [value]="7">Dimanche</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button
+      class="createhouse__form-btn"
+      expand="block"
+      color="light"
+      type="submit"
+      [disabled]="createHomeForm.invalid"
+    >
+      Créer
+    </ion-button>
+  </form>
+</ion-content>

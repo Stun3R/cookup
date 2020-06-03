@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="auth"></ion-back-button>
+      <ion-back-button
+        [text]="Retour"
+        defaultHref="auth"
+        color="light"
+      ></ion-back-button>
     </ion-buttons>
     <ion-title>auth-register</ion-title>
   </ion-toolbar>
@@ -14,7 +18,12 @@
         Courriel
         <ion-text color="danger">*</ion-text>
       </ion-label>
-      <ion-input required formControlName="identifier" type="email"></ion-input>
+      <ion-input
+        clearInput
+        required
+        formControlName="identifier"
+        type="email"
+      ></ion-input>
     </ion-item>
     <ion-item *ngIf="f.identifier.invalid && f.identifier.touched" lines="none">
       <ion-text

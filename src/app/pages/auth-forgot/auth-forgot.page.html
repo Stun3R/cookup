@@ -1,7 +1,11 @@
 <ion-header class="auth-header" mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="auth"></ion-back-button>
+      <ion-back-button
+        [text]="Retour"
+        defaultHref="auth"
+        color="light"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -23,6 +27,7 @@
                 <ion-text color="danger">*</ion-text>
               </ion-label>
               <ion-input
+                clearInput
                 required
                 formControlName="email"
                 type="email"
@@ -31,7 +36,7 @@
 
             <ion-button
               expand="block"
-              color="primary"
+              color="light"
               type="submit"
               [disabled]="forgotForm.invalid"
               class="auth__connection__form-btn"

@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Plugins } from "@capacitor/core";
-import { from, of } from "rxjs";
-import { switchMap } from "rxjs/operators";
 
 const { Storage } = Plugins;
 

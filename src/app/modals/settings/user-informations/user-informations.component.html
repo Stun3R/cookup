@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="!isEditable" (click)="cancel()" color="info">
+        <ion-icon
+          style="margin-right: 0;"
+          slot="start"
+          name="chevron-back"
+        ></ion-icon>
+        Retour
+      </ion-button>
+      <ion-button (click)="cancel()" *ngIf="isEditable" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Informations</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="handleButton()"
+        color="info"
+        [class]="isEditable ? 'updatehouse__btn-editable' : ''"
+      >
+        {{ isEditable ? "OK" : "Modifier" }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="margin-bottom: 2rem; margin-top: 2rem;">
+    <ion-avatar
+      style="height: 96px; width: 96px; margin-left: auto; margin-right: auto;"
+    >
+      <img [src]="'https://eu.ui-avatars.com/api/?name=' + user?.username" />
+    </ion-avatar>
+  </div>
+  <form
+    class="updateuser__form"
+    [formGroup]="updateUserForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <ion-item style="margin-bottom: 1rem;">
+      <ion-label>
+        Nom d'utilisateur
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        maxlength="20"
+        formControlName="username"
+        type="text"
+        style="text-align: right;"
+        [readonly]="!isEditable"
+      ></ion-input>
+    </ion-item>
+    <ion-item style="margin-bottom: 1rem;">
+      <ion-label>
+        Courriel
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        formControlName="email"
+        type="email"
+        style="text-align: right;"
+        [readonly]="!isEditable"
+      ></ion-input>
+    </ion-item>
+  </form>
+</ion-content>

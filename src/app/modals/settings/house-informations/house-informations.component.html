@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="!isEditable" (click)="cancel()" color="info">
+        <ion-icon
+          style="margin-right: 0;"
+          slot="start"
+          name="chevron-back"
+        ></ion-icon>
+        Retour
+      </ion-button>
+      <ion-button (click)="cancel()" *ngIf="isEditable" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Informations de la maison</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="handleButton()"
+        color="info"
+        [class]="isEditable ? 'updatehouse__btn-editable' : ''"
+      >
+        {{ isEditable ? "OK" : "Modifier" }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form
+    class="updatehouse__form"
+    [formGroup]="updateHomeForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <ion-item style="margin-bottom: 1rem;">
+      <ion-label>
+        Nom de maison
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        maxlength="20"
+        formControlName="name"
+        type="text"
+        style="text-align: right;"
+        [readonly]="!isEditable"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Jour de course
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select
+        *ngIf="isEditable"
+        formControlName="list_at"
+        interface="popover"
+      >
+        <ion-select-option [value]="1">Lundi</ion-select-option>
+        <ion-select-option [value]="2">Mardi</ion-select-option>
+        <ion-select-option [value]="3">Mercredi</ion-select-option>
+        <ion-select-option [value]="4">Jeudi</ion-select-option>
+        <ion-select-option [value]="5">Vendredi</ion-select-option>
+        <ion-select-option [value]="6">Samedi</ion-select-option>
+        <ion-select-option [value]="7">Dimanche</ion-select-option>
+      </ion-select>
+      <ion-text *ngIf="!isEditable" style="padding-right: 10px;">
+        {{ week[house.list_at - 1] }}
+      </ion-text>
+    </ion-item>
+  </form>
+</ion-content>

@@ -10,6 +10,8 @@ import {
   Provider,
   storageConfig,
   ErrorMode,
+  StoreConstants,
+  User,
 } from "../../interfaces";
 import { ErrorService } from "../error/error.service";
 import { StorageService } from "../storage/storage.service";
@@ -32,9 +34,6 @@ export class StrapiService {
     private navController: NavController,
     private error: ErrorService
   ) {
-    this.store = {
-      key: "jwt",
-    };
     this.loadStoredToken();
   }
 
@@ -42,7 +41,7 @@ export class StrapiService {
     let platformObs = from(this.plt.ready());
     this.user = platformObs.pipe(
       switchMap(() => {
-        return this.storage.getItem(this.store.key);
+        return this.storage.getItem(StoreConstants.JWT);
       }),
       map((token) => {
         if (token) {
@@ -83,13 +82,10 @@ export class StrapiService {
           { body: credentials }
         ).pipe(
           take(1),
-          map((res: Authentication) => {
-            return res.jwt;
-          }),
-          switchMap((token) => {
-            let decoded = helper.decodeToken(token);
+          switchMap(async (res: Authentication) => {
+            let decoded = helper.decodeToken(res.jwt);
             this.userData.next(decoded);
-            let storageObs = this.setToken(token);
+            let storageObs = this.setToken(res.jwt);
             return storageObs;
           })
         );
@@ -276,12 +272,12 @@ export class StrapiService {
    * @param id ID of entry
    * @param data
    */
-  public updateEntry(
+  public updateEntry<T>(
     contentTypePluralized: string,
     id: string,
     body: Object
-  ): Observable<Object> {
-    return this.request<Object>(
+  ): Observable<T> {
+    return this.request<T>(
       "put",
       `/${contentTypePluralized}/${id}`,
       ErrorMode.Toast,
@@ -315,8 +311,16 @@ export class StrapiService {
     this.userData.next(null);
   }
 
+  setUser(user: User): Observable<any> {
+    return from(this.storage.setItem(StoreConstants.USER, user));
+  }
+
+  clearUser(): Observable<any> {
+    return from(this.storage.removeItem(StoreConstants.USER));
+  }
+
   setToken(token: string): Observable<any> {
-    return from(this.storage.setItem(this.store.key, token));
+    return from(this.storage.setItem(StoreConstants.JWT, token));
   }
 
   clearToken(): Observable<any> {

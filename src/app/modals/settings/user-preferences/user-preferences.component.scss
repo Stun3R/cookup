@@ -1,0 +1,71 @@
+.settings {
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+    &-avatar {
+      height: 96px;
+      width: 96px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &-name {
+      margin-top: 0.75rem;
+      font-weight: 600;
+    }
+  }
+
+  &__list {
+    &-divider {
+      --padding-start: 2px;
+      --background: unset;
+      --padding-bottom: 4px;
+
+      ion-label {
+        padding-left: 4px;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+    }
+    &-group {
+      margin-bottom: 2rem;
+    }
+    &__item {
+      &-top {
+        --border-radius: 12px 12px 0 0;
+      }
+      &-bottom {
+        --border-radius: 0 0 12px 12px;
+        --inner-border-width: 0;
+      }
+      &-full {
+        --border-radius: 12px;
+        --inner-border-width: 0;
+      }
+    }
+    &__button {
+      &-info {
+        --background: white;
+        --border-radius: 12px;
+        color: var(--ion-color-info);
+      }
+      &-danger {
+        --background: white;
+        --border-radius: 12px;
+        color: var(--ion-color-danger);
+      }
+    }
+  }
+}
+
+.sc-ion-buttons-ios-s ion-button {
+  font-weight: 600;
+}
+
+ion-list {
+  background: unset;
+}
+
+ion-content {
+  --ion-font-family: "SFProText";
+  --background: #f1f1f6;
+}

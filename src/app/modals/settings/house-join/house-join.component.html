@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" color="info">
+        <ion-icon
+          style="margin-right: 0;"
+          slot="start"
+          name="chevron-back"
+        ></ion-icon>
+        Retour
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Rejoindre une maison</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="showCamera" (click)="closeCamera()">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-icon *ngIf="showCamera" class="frame" name="qr-scanner"></ion-icon>
+
+  <div *ngIf="!showCamera">
+    <ion-item *ngIf="textScanned" lines="none">
+      <ion-label>
+        <p>Texte du QR Code</p>
+        <h2>
+          <b>{{ textScanned }}</b>
+        </h2>
+      </ion-label>
+    </ion-item>
+    <ion-button expand="block" (click)="scanCode()">
+      <ion-icon slot="start" name="qr-scanner"></ion-icon>
+      Scanner un QR Code
+    </ion-button>
+  </div>
+</ion-content>

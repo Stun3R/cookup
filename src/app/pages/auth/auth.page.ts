@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Provider } from "src/app/interfaces";
-import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
 import { StrapiService } from "src/app/services/strapi/strapi.service";
-import { Router } from "@angular/router";
 import { AlertController, Platform } from "@ionic/angular";
 import { Plugins } from "@capacitor/core";
 
@@ -20,7 +18,6 @@ export class AuthPage implements OnInit {
     private platform: Platform
   ) {}
 
-  // TODO: Clean code subscribe
   signIn(provider: Provider) {
     if (this.platform.is("ios")) {
       Browser.open({

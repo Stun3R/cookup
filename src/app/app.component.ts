@@ -1,5 +1,4 @@
 import { Component, NgZone } from "@angular/core";
-
 import {
   Platform,
   NavController,
@@ -7,7 +6,6 @@ import {
   LoadingController,
 } from "@ionic/angular";
 import { StrapiService } from "./services/strapi/strapi.service";
-import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
 import { Plugins, StatusBarStyle } from "@capacitor/core";
 import * as qs from "qs";
 import { Router } from "@angular/router";
@@ -25,7 +23,6 @@ export class AppComponent {
     private platform: Platform,
     private navController: NavController,
     private strapi: StrapiService,
-    private safariViewController: SafariViewController,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private router: Router,

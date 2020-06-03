@@ -2,20 +2,17 @@
   <ion-toolbar>
     <ion-title size="large" class="home__toolbar-title">Bienvenue</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="presentUserPreferences()">
         <ion-avatar slot="end" class="home__toolbar-avatar">
-          <img src="../../assets/avatar.png" />
+          <img [src]="'https://eu.ui-avatars.com/api/?name=' + user.username" />
         </ion-avatar>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-title size="large" class="home__toolbar-title">Diane</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="start" name="log-out-outline" color="dark"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title size="large" class="home__toolbar-title">
+      {{ user.username }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 

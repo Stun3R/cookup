@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" color="info">
+        <ion-icon
+          style="margin-right: 0;"
+          slot="start"
+          name="chevron-back"
+        ></ion-icon>
+        Retour
+      </ion-button>
+    </ion-buttons>
+    <ion-title>QRCode</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollY]="false">
+  <div style="display: flex; height: 100%;">
+    <qrcode
+      [elementType]="elementType"
+      [qrdata]="house?.uuid"
+      [width]="296"
+      [errorCorrectionLevel]="'M'"
+      cssClass="custom-qrcode"
+      style="margin: auto;"
+    ></qrcode>
+  </div>
+</ion-content>

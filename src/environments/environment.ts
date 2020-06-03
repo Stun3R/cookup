@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
+  apiUrl: "http://192.168.1.96:1337",
   // apiUrl: "http://localhost:1337",
-  apiUrl: "https://dev-cookup-api.herokuapp.com",
+  // apiUrl: "https://dev-cookup-api.herokuapp.com",
 };
 
 /*

@@ -97,3 +97,7 @@
 .info {
   color: var(--ion-color-info) !important;
 }
+
+.custom-qrcode > img {
+  border-radius: 12px;
+}
