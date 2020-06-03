@@ -9,4 +9,36 @@
       height: 2rem;
     }
   }
+
+  &__content {
+    --background: #f1f1f6;
+  }
+
+  &__title {
+    margin-left: 16px;
+    margin-right: 16px;
+    font-weight: 600;
+  }
+
+  &__card {
+    box-shadow: unset;
+    border-radius: 16px;
+    margin-top: 10px;
+
+    &-content {
+      margin: 12px 0px;
+    }
+
+    &-icon {
+      font-size: 2rem;
+    }
+
+    &-text {
+      font-size: 1rem;
+    }
+  }
+}
+
+ion-item {
+  --inner-border-width: 0;
 }
