@@ -34,6 +34,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("./recipes/recipes.module").then((m) => m.RecipesPageModule),
       },
+      {
+        path: "recipes/view",
+        loadChildren: () =>
+          import("../pages/recipe-view/recipe-view.module").then(
+            (m) => m.RecipeViewPageModule
+          ),
+      },
     ],
   },
 ];

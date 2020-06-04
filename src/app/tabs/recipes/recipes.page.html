@@ -11,7 +11,8 @@
           <ion-icon
             class="recipes__category-icon"
             src="assets/icon/recipe-categories/all.svg"
-          ></ion-icon>
+          >
+          </ion-icon>
         </div>
         <ion-text
           class="recipes__category-text"
@@ -99,4 +100,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content class="recipes__content">
+  <ion-searchbar placeholder="Rechercher une recette..."></ion-searchbar>
+
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>A</ion-label>
+      </ion-item-divider>
+
+      <ion-item detail="true" lines="none">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/recipe-categories/dessert.svg"
+        ></ion-icon>
+        <ion-label>
+          <h2>Affogato</h2>
+          <p class="recipes__list-infos">
+            <ion-icon
+              class="recipes__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            10 min
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>
+        <ion-label>B</ion-label>
+      </ion-item-divider>
+
+      <ion-item detail="true" lines="none">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/recipe-categories/dessert.svg"
+        ></ion-icon>
+        <ion-label>
+          <h2>Banana Split</h2>
+          <p class="recipes__list-infos">
+            <ion-icon
+              class="recipes__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            10 min
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider>
+        <ion-label>C</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none" [routerLink]="['/private/recipes/view']">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/recipe-categories/snack.svg"
+        ></ion-icon>
+        <ion-label>
+          <h2>Compote d'oignons</h2>
+          <p class="recipes__list-infos">
+            <ion-icon
+              class="recipes__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            1h05
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
