@@ -52,28 +52,53 @@
 <ion-content class="stocks__content">
   <ion-searchbar placeholder="Rechercher un aliment..."></ion-searchbar>
 
-  <ion-card class="stocks__card">
-    <ion-item>
-      <ion-icon src="assets/icon/food-categories/frozen.svg" slot="start">
-      </ion-icon>
-      <div class="stocks__card-section">
-        <div class="stocks__card-content stocks__card-mb">
-          <ion-text class="stocks__card-title">
-            Pizza
-          </ion-text>
-          <ion-badge color="secondary" class="stocks__card-title">
-            300g
-          </ion-badge>
-        </div>
-        <div class="stocks__card-content">
-          <ion-text class="stocks__card-expiry" color="medium">
-            Expire le : 09/06/2020
-          </ion-text>
-          <ion-text class="stocks__card-categories" color="medium">
-            Congélateur
-          </ion-text>
-        </div>
-      </div>
-    </ion-item>
-  </ion-card>
+  <ion-item-divider>
+    <ion-label>F</ion-label>
+  </ion-item-divider>
+
+  <ion-item lines="none" detail="true">
+    <ion-icon slot="start" src="assets/icon/food-categories/fresh.svg">
+    </ion-icon>
+    <ion-label>
+      <h2 class="stocks__list-content stocks__list-mb">
+        Fromage de chèvre
+        <ion-badge slot="end" color="secondary">
+          300g
+        </ion-badge>
+      </h2>
+      <p class="stocks__list-content stocks__list-infos">
+        <ion-text color="medium">
+          Expire le : 09/06/2020
+        </ion-text>
+        <ion-text color="medium">
+          Réfrigérateur
+        </ion-text>
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item-divider>
+    <ion-label>O</ion-label>
+  </ion-item-divider>
+
+  <ion-item lines="none" detail="true">
+    <ion-icon slot="start" src="assets/icon/food-categories/vegetables.svg">
+    </ion-icon>
+    <ion-label>
+      <h2 class="stocks__list-content stocks__list-mb">
+        Oignon
+        <ion-badge slot="end" color="secondary">
+          1 kg
+        </ion-badge>
+      </h2>
+      <p class="stocks__list-content stocks__list-infos">
+        <ion-text color="medium">
+          Expire le : 09/06/2020
+        </ion-text>
+        <ion-text color="medium">
+          Cellier
+        </ion-text>
+      </p>
+    </ion-label>
+  </ion-item>
 </ion-content>
