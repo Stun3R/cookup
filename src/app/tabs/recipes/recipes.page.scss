@@ -43,4 +43,18 @@
       margin-top: 5px;
     }
   }
+
+  &__list {
+    &-infos {
+      display: flex;
+    }
+
+    &-icon {
+      margin: auto 5px auto 0;
+    }
+  }
+
+  &__content {
+    --background: #f1f1f6;
+  }
 }

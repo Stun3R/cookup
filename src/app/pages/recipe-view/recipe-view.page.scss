@@ -1,0 +1,47 @@
+.recipe {
+  &__cook {
+    &-round {
+      background-color: var(--ion-color-secondary);
+      width: 36px;
+      height: 36px;
+      border-radius: 100%;
+      display: flex;
+    }
+
+    &-nb {
+      margin: auto;
+      color: black;
+    }
+  }
+
+  &__title {
+    &-content {
+      color: grey;
+      font-weight: 400;
+      display: flex;
+      margin: 0 15px;
+    }
+    &-icon {
+      margin: auto;
+      margin-right: 5px;
+    }
+
+    &-infos {
+      font-size: 1rem;
+      font-weight: 400;
+      margin: auto;
+    }
+
+    &-divider {
+      border-left: solid 1px;
+      margin: 0 12px;
+    }
+  }
+
+  &__foods {
+    &-quantity {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  }
+}
