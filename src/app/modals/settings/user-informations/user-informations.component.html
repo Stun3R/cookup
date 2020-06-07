@@ -34,11 +34,7 @@
       <img [src]="'https://eu.ui-avatars.com/api/?name=' + user?.username" />
     </ion-avatar>
   </div>
-  <form
-    class="updateuser__form"
-    [formGroup]="updateUserForm"
-    (ngSubmit)="onSubmit()"
-  >
+  <form class="updateuser__form" [formGroup]="updateUserForm">
     <ion-item style="margin-bottom: 1rem;">
       <ion-label>
         Nom d'utilisateur

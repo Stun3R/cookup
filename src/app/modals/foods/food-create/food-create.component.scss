@@ -1,0 +1,18 @@
+.createfood {
+  &-btn {
+    font-weight: 600;
+  }
+  &__form {
+    ion-item {
+      --padding-start: 0;
+      --background: none;
+    }
+  }
+}
+
+/* ion-content {
+  --ion-font-family: "SFProText";
+} */
+.input-label {
+  display: inline-block;
+}

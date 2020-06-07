@@ -1,6 +1,7 @@
 export enum ErrorMode {
   Toast,
   Alert,
+  None,
 }
 
 export type Provider = "google" | "facebook" | "instagram";
