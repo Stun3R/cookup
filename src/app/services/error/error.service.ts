@@ -32,7 +32,7 @@ export class ErrorService {
       }
     }
     if (mode === ErrorMode.Toast) this.presentToast(message);
-    else this.presentAlert(message);
+    else if (mode === ErrorMode.Alert) this.presentAlert(message);
     // return an observable with a user-facing error message
     return message;
   }

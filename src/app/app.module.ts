@@ -99,7 +99,7 @@ export class AppModule {
       ({ graphQLErrors, networkError, response, operation }) => {
         if (graphQLErrors) {
           graphQLErrors.map((error) => {
-            console.log(error);
+            console.log("tamer", error);
             // Destroy the session if INVALID_TOKEN receieved from the server
             // Forcing user to login again
             /*             if (type === "INVALID_TOKEN") {
@@ -161,8 +161,13 @@ export class AppModule {
       link: link,
       cache: new InMemoryCache(),
       defaultOptions: {
+        watchQuery: {
+          fetchPolicy: "no-cache",
+          errorPolicy: "ignore",
+        },
         query: {
-          fetchPolicy: "network-only",
+          fetchPolicy: "no-cache",
+          errorPolicy: "all",
         },
       },
     });

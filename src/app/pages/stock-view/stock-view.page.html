@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        *ngIf="!isEditable"
+        defaultHref="/private/stocks"
+        color="info"
+      ></ion-back-button>
+      <ion-button (click)="isEditable = false" *ngIf="isEditable" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ food?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="handleButton()"
+        color="info"
+        [class]="isEditable ? 'updatefood__btn-editable' : ''"
+      >
+        {{ isEditable ? "OK" : "Modifier" }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-thumbnail
+    style="
+      height: 160px;
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    "
+  >
+    <img style="object-fit: contain;" [src]="food?.image" />
+  </ion-thumbnail>
+
+  <form class="updatefood__form" [formGroup]="updateFoodForm">
+    <ion-grid style="margin-bottom: 0.5rem; padding: 0;">
+      <ion-row class="ion-no-padding">
+        <ion-col size="8" class="ion-no-padding">
+          <ion-item>
+            <ion-label>
+              Quantité
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              maxlength="20"
+              formControlName="quantity"
+              [readonly]="!isEditable"
+              type="number"
+              inputmode="decimal"
+              style="text-align: right;"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" class="ion-no-padding">
+          <ion-item style="text-align: right;">
+            <ion-select
+              formControlName="unit"
+              interface="popover"
+              style="max-width: 100%; width: 100%;"
+              *ngIf="isEditable"
+            >
+              <ion-select-option *ngFor="let unit of units" [value]="unit">
+                {{ unit }}
+              </ion-select-option>
+            </ion-select>
+            <ion-text
+              *ngIf="!isEditable"
+              style="width: 100%; padding-right: 10%;"
+            >
+              {{ f?.unit?.value }}
+            </ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Categorie
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select
+        formControlName="food_category"
+        [compareWith]="compareFoodCategoryFn"
+        interface="popover"
+        *ngIf="isEditable"
+      >
+        <ion-select-option
+          *ngFor="let foodCategory of foodsCategories"
+          [value]="foodCategory"
+        >
+          {{ foodCategory.name }}
+        </ion-select-option>
+      </ion-select>
+      <ion-item *ngIf="!isEditable" lines="none">
+        <ion-text>
+          {{ f?.food_category?.value?.name }}
+        </ion-text>
+      </ion-item>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Stockage
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select
+        formControlName="place"
+        interface="popover"
+        *ngIf="isEditable"
+      >
+        <ion-select-option
+          *ngFor="let place of places | keyvalue"
+          [value]="place.key"
+        >
+          {{ place.value }}
+        </ion-select-option>
+      </ion-select>
+      <ion-item *ngIf="!isEditable" lines="none">
+        <ion-text>
+          {{ places[f?.place?.value] }}
+        </ion-text>
+      </ion-item>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Date d'expiration
+      </ion-label>
+      <!-- TODO: Block date that can't go before today -->
+      <ion-datetime
+        formControlName="expire_at"
+        displayFormat="DD/MM/YYYY"
+        min="2020"
+        max="2100"
+        *ngIf="isEditable"
+      ></ion-datetime>
+      <ion-item *ngIf="!isEditable" lines="none">
+        <ion-text>
+          {{ f?.expire_at?.value | date: 'dd/LL/y' }}
+        </ion-text>
+      </ion-item>
+    </ion-item>
+  </form>
+
+  <ion-item-divider>
+    <ion-label>Valeurs nutritionnelles</ion-label>
+  </ion-item-divider>
+  <ng-container *ngFor="let nutriment of food?.nutriments">
+    <ion-item *ngIf="nutriment?.value !== null">
+      <ion-label>
+        {{ nutriment?.name }}
+        <ion-badge slot="end" color="secondary">
+          {{ nutriment?.value + nutriment?.unit }}
+        </ion-badge>
+      </ion-label>
+    </ion-item>
+  </ng-container>
+</ion-content>

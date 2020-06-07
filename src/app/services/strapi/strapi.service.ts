@@ -187,8 +187,8 @@ export class StrapiService {
             return storageObs;
           }),
           catchError((e) => {
-            let message = this.error.handleError(e, ErrorMode.Alert);
-            return throwError(message);
+            let error = this.error.handleError(e, ErrorMode.Alert);
+            return throwError(error);
           })
         );
       })

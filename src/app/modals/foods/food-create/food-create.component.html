@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="!isEditable" (click)="closeModal()" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajouter un produit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="info"
+        class="createfood-btn"
+        [disabled]="createFoodForm.invalid"
+        (click)="handleSubmit()"
+      >
+        OK
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="margin-bottom: 2rem; margin-top: 1rem; text-align: center;">
+    <ion-thumbnail
+      style="
+        height: 160px;
+        width: 160px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      "
+    >
+      <img style="object-fit: contain;" [src]="product?.imageUrl" />
+    </ion-thumbnail>
+
+    <p>
+      Pensez à vérifier l'exactitude des informations ci-dessous
+    </p>
+  </div>
+  <form class="createfood__form" [formGroup]="createFoodForm">
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Nom
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        maxlength="40"
+        formControlName="name"
+        type="text"
+        style="text-align: right;"
+      ></ion-input>
+    </ion-item>
+
+    <ion-grid style="margin-bottom: 0.5rem; padding: 0;">
+      <ion-row class="ion-no-padding">
+        <ion-col size="8" class="ion-no-padding">
+          <ion-item>
+            <ion-label>
+              Quantité
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              maxlength="20"
+              formControlName="quantity"
+              type="number"
+              inputmode="decimal"
+              style="text-align: right;"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" class="ion-no-padding">
+          <ion-item style="text-align: right;">
+            <ion-select
+              formControlName="unit"
+              interface="popover"
+              style="max-width: 100%; width: 100%;"
+            >
+              <ion-select-option *ngFor="let unit of units" [value]="unit">
+                {{ unit }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Categorie
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select
+        formControlName="food_category"
+        [compareWith]="compareFoodCategoryFn"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let foodCategoory of foodsCategories"
+          [value]="foodCategoory"
+        >
+          {{ foodCategoory.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Stockage
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select formControlName="place" interface="popover">
+        <ion-select-option *ngFor="let place of places" [value]="place.ref">
+          {{ place.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Date d'expiration
+      </ion-label>
+      <!-- TODO: Block date that can't go before today -->
+      <ion-datetime
+        formControlName="expire_at"
+        displayFormat="DD/MM/YYYY"
+        min="2020"
+        max="2100"
+      ></ion-datetime>
+    </ion-item>
+  </form>
+</ion-content>

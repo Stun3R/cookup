@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TabsPage } from "./tabs.page";
+import { StockViewResolverService } from "../resolver/stockViewResolver/stock-view-resolver.service";
 
 const routes: Routes = [
   {
@@ -39,6 +40,16 @@ const routes: Routes = [
         loadChildren: () =>
           import("../pages/recipe-view/recipe-view.module").then(
             (m) => m.RecipeViewPageModule
+          ),
+      },
+      {
+        path: "stocks/:id",
+        resolve: {
+          data: StockViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/stock-view/stock-view.module").then(
+            (m) => m.StockViewPageModule
           ),
       },
     ],
