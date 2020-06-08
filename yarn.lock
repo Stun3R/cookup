@@ -3537,6 +3537,11 @@ dateformat@^3.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
+dayjs@^1.8.28:
+  version "1.8.28"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.28.tgz#37aa6201df483d089645cb6c8f6cef6f0c4dbc07"
+  integrity sha512-ccnYgKC0/hPSGXxj7Ju6AV/BP4HUkXC2u15mikXT5mX9YorEaoi1bEKOmAqdkJHN4EEkmAf97SpH66Try5Mbeg==
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -5359,6 +5364,11 @@ invert-kv@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
+
+ionic-selectable@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/ionic-selectable/-/ionic-selectable-4.7.1.tgz#5103ea275c87c4ab3478b603d8bdc044d05b0350"
+  integrity sha512-kyik9tQWn+SokGMNBks5wjxkW8+oc7Xrjquy9rEpMJpB60YUUYacseFkPRukaY/2DzjPNF1dpPsvrblltGBYuw==
 
 ionicons@^5.0.1:
   version "5.0.1"

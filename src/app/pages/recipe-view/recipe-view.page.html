@@ -7,7 +7,7 @@
         color="info"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>Compote d'oignons</ion-title>
+    <ion-title>{{ recipe?.name }}</ion-title>
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="segment">
@@ -27,177 +27,49 @@
       Ingrédients
     </ion-list-header>
 
-    <ion-item>
+    <ion-item *ngFor="let ingredient of recipe?.ingredients">
       <ion-icon
         slot="start"
-        src="assets/icon/food-categories/vegetables.svg"
+        [src]="'assets/icon/food-categories/' + ingredient?.food?.food_category?.icon"
       ></ion-icon>
       <ion-label>
-        Oignon
-        <p>Cellier</p>
+        {{ ingredient?.food?.name }}
+        <p>{{ places[ingredient?.food?.place] }}</p>
       </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity">1 kg</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/snack.svg"
-      ></ion-icon>
-      <ion-label>
-        Sucre fin
-        <p>Cellier</p>
-      </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity">150 g</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/pasta.svg"
-      ></ion-icon>
-      <ion-label>
-        Poivre
-        <p>Cellier</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/pasta.svg"
-      ></ion-icon>
-      <ion-label>
-        Sel
-        <p>Cellier</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/fresh.svg"
-      ></ion-icon>
-      <ion-label>
-        Beurre
-        <p>Réfrigérateur</p>
-      </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity">2 cuillères</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/pasta.svg"
-      ></ion-icon>
-      <ion-label>
-        Huile d’arachide
-        <p>Cellier</p>
-      </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity"
-        >1 cuillère à soupe</ion-text
-      >
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/pasta.svg"
-      ></ion-icon>
-      <ion-label>
-        Vinaigre de Jerez
-        <p>Cellier</p>
-      </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity">4 cuillères</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/drink.svg"
-      ></ion-icon>
-      <ion-label>
-        Vin rouge assez corsé
-        <p>Cellier</p>
-      </ion-label>
-      <ion-text slot="end" class="recipe__foods-quantity">1 verre</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-icon
-        slot="start"
-        src="assets/icon/food-categories/vegetables.svg"
-      ></ion-icon>
-      <ion-label>
-        Coriandre
-        <p>Cellier</p>
-      </ion-label>
+      <ion-text slot="end" class="recipe__foods-quantity">
+        {{ ingredient?.quantity + ingredient?.food?.unit }}
+      </ion-text>
     </ion-item>
   </ion-list>
 
   <ion-list *ngIf="segment === 'cook'">
-    <ion-list-header>
+    <ion-list-header style="padding-bottom: 8px;">
       Préparation
       <ion-text class="recipe__title-content">
         <ion-icon
           class="recipe__title-icon"
           src="assets/icon/recipes/prepare.svg"
         ></ion-icon>
-        <span class="recipe__title-infos">15 min</span>
+        <span class="recipe__title-infos"
+          >{{ recipe?.preparation | dayjs:'HH:mm:ss.SSS' }}</span
+        >
         <span class="recipe__title-divider"></span>
         <ion-icon
           class="recipe__title-icon"
           src="assets/icon/recipes/cook.svg"
         ></ion-icon>
-        <span class="recipe__title-infos">50 min</span>
+        <span class="recipe__title-infos"
+          >{{ recipe?.cooking | dayjs:'HH:mm:ss.SSS' }}</span
+        >
       </ion-text>
     </ion-list-header>
 
-    <ion-item>
+    <ion-item *ngFor="let step of recipe?.steps; let i = index">
       <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">1</span>
+        <span class="recipe__cook-nb">{{ i + 1 }}</span>
       </ion-text>
       <ion-label class="ion-text-wrap">
-        Étuver les oignons émincés dans le beurre et l’huile à feu très doux, à
-        couvert d’abord pour les attendrir, pendant 10 min.
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">2</span>
-      </ion-text>
-      <ion-label class="ion-text-wrap">
-        Saler, poivre, sucrer et ajouter la coriandre moulue.
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">3</span>
-      </ion-text>
-      <ion-label class="ion-text-wrap">
-        Mélanger et continuer la cuisson encore 10 min.
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">4</span>
-      </ion-text>
-      <ion-label class="ion-text-wrap">
-        Verser le vinaigre et le vin.
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">5</span>
-      </ion-text>
-      <ion-label class="ion-text-wrap">
-        Remettre à cuire, à découvert cette fois, en remuant souvent à la
-        cuillère de bois comme une confiture, feu au plus doux, pendant 30 min.
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-text slot="start" color="primary" class="recipe__cook-round">
-        <span class="recipe__cook-nb">6</span>
-      </ion-text>
-      <ion-label class="ion-text-wrap">
-        Servir tiède ou froid avec des terrines, pâtés, gibier ou porc.
+        {{ step }}
       </ion-label>
     </ion-item>
   </ion-list>

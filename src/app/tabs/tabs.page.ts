@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { StrapiService } from "../services/strapi/strapi.service";
-import { ErrorMode } from "../interfaces";
+import { ErrorMode, User, StoreConstants } from "../interfaces";
 import {
   ModalController,
   IonRouterOutlet,
@@ -11,6 +11,8 @@ import {
 import { FoodCreateComponent } from "../modals/foods/food-create/food-create.component";
 import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
+import { RecipesCreateComponent } from "../modals/recipes/recipes-create/recipes-create.component";
+import { StorageService } from "../services/storage/storage.service";
 
 @Component({
   selector: "app-tabs",
@@ -27,7 +29,8 @@ export class TabsPage {
     private routerOutlet: IonRouterOutlet,
     private apollo: Apollo,
     private loadingController: LoadingController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private storage: StorageService
   ) {}
 
   async addStock() {
@@ -123,5 +126,19 @@ export class TabsPage {
     });
 
     await alert.present();
+  }
+
+  async createRecipe() {
+    const user: User = await this.storage.getItem(StoreConstants.USER);
+    const modal = await this.modalController.create({
+      component: RecipesCreateComponent,
+      componentProps: {
+        user,
+      },
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
+    });
+
+    await modal.present();
   }
 }

@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal(false)" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajouter un ingrédient</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="info"
+        class="stocks-btn"
+        [disabled]="!food"
+        (click)="closeModal(true)"
+      >
+        OK
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class]="!openSearch ? 'stocks__content' : ''">
+  <ion-searchbar
+    placeholder="Trouver un ingrédient"
+    show-cancel-button="focus"
+    cancel-button-text="Annuler"
+    (ionChange)="searchFoods($event)"
+    (ionCancel)="setOpenSearch(false)"
+    (ionFocus)="setOpenSearch(true)"
+    animated
+  ></ion-searchbar>
+  <ion-list>
+    <ng-container *ngIf="openSearch">
+      <ion-item lines="none" *ngFor="let food of foods" (click)="setFood(food)">
+        <ion-icon
+          slot="start"
+          [src]="'assets/icon/food-categories/' + food?.food_category?.icon"
+        >
+        </ion-icon>
+        <ion-label>
+          <h2 class="stocks__list-content stocks__list-mb">
+            {{ food?.name }}
+          </h2>
+          <p class="stocks__list-content stocks__list-infos">
+            <ion-text color="medium" style="text-align: right;">
+              {{ places[food?.place] }}
+            </ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+
+    <ng-container *ngIf="!openSearch">
+      <ion-list-header style="--background: unset;" class="ion-padding-bottom">
+        <ion-text>
+          Ingrédient sélectionné
+        </ion-text>
+        <ion-badge
+          *ngIf="!food"
+          color="warning"
+          mode="ios"
+          style="margin-left: 8px; margin-bottom: 4px;"
+          >Aucun</ion-badge
+        >
+      </ion-list-header>
+      <ion-item *ngIf="food">
+        <ion-icon
+          slot="start"
+          [src]="'assets/icon/food-categories/' + food?.food_category?.icon"
+        >
+        </ion-icon>
+        <ion-label>
+          <h2 class="stocks__list-content stocks__list-mb">
+            {{ food?.name }}
+          </h2>
+          <p class="stocks__list-content stocks__list-infos">
+            <ion-text color="medium" style="text-align: right;">
+              {{ places[food?.place] }}
+            </ion-text>
+          </p>
+        </ion-label>
+        <ion-icon
+          slot="end"
+          name="close-circle"
+          color="danger"
+          (click)="removeFood()"
+        ></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="food" style="padding-right: 8px;">
+        <ion-label>
+          Quantité
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input
+          maxlength="20"
+          [(ngModel)]="quantity"
+          [value]="0"
+          type="number"
+          inputmode="decimal"
+          style="text-align: right;"
+        ></ion-input>
+        <ion-text>
+          {{ food?.unit }}
+        </ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

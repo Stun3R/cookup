@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { RecipeViewPageRoutingModule } from './recipe-view-routing.module';
+import { RecipeViewPageRoutingModule } from "./recipe-view-routing.module";
 
-import { RecipeViewPage } from './recipe-view.page';
+import { RecipeViewPage } from "./recipe-view.page";
+import { DayjsPipe } from "src/app/pipes/dates/dayjs.pipe";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecipeViewPageRoutingModule
+    RecipeViewPageRoutingModule,
   ],
-  declarations: [RecipeViewPage]
+  declarations: [RecipeViewPage, DayjsPipe],
 })
 export class RecipeViewPageModule {}

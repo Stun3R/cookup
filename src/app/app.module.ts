@@ -25,6 +25,8 @@ import { StorageService } from "./services/storage/storage.service";
 import { environment } from "src/environments/environment";
 import { StoreConstants } from "./interfaces";
 
+import { IonicSelectableModule } from "ionic-selectable";
+
 export function jwtOptionsFactory(storage: StorageService) {
   return {
     tokenGetter: async () => {
@@ -62,6 +64,7 @@ export function jwtOptionsFactory(storage: StorageService) {
     }),
     ApolloModule,
     QRCodeModule,
+    IonicSelectableModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

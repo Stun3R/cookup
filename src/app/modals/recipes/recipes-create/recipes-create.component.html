@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajouter une recette</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="info"
+        class="createrecipe-btn"
+        [disabled]="createRecipeForm.invalid"
+        (click)="handleSubmit()"
+      >
+        OK
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-end ion-padding-vertical">
+  <form
+    [formGroup]="createRecipeForm"
+    (ngSubmit)="onSubmit()"
+    class="createrecipe__form"
+  >
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Nom
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input
+        maxlength="140"
+        formControlName="name"
+        type="text"
+        style="text-align: right;"
+        placeholder="Nom de votre recette"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Catégorie
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select formControlName="category" interface="popover">
+        <ion-select-option *ngFor="let key of categoriesKey" [value]="key">
+          {{ recipesCategories[key] }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Temps de préparation
+      </ion-label>
+      <ion-datetime
+        formControlName="preparation"
+        display-format="HH:mm:ss"
+        picker-format="HH:mm:ss"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Temps de cuisson
+      </ion-label>
+      <ion-datetime
+        formControlName="cooking"
+        display-format="HH:mm:ss"
+        picker-format="HH:mm:ss"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header>
+        Préparation
+      </ion-list-header>
+
+      <ng-container
+        formArrayName="steps"
+        *ngFor="let step of steps.controls; let i = index"
+      >
+        <ion-item>
+          <ion-text
+            slot="start"
+            color="primary"
+            class="createrecipe__form__cook-round"
+          >
+            <span class="createrecipe__form__cook-nb">{{ i + 1 }}</span>
+          </ion-text>
+          <ion-input type="text" [formControl]="step"></ion-input>
+          <ion-icon
+            slot="end"
+            name="close-circle"
+            color="danger"
+            size="small"
+            (click)="removeStep(i)"
+          ></ion-icon>
+        </ion-item>
+      </ng-container>
+      <ion-button
+        [disabled]="
+          steps.controls.length > 0 &&
+          steps.controls[steps.controls.length - 1].invalid
+        "
+        (click)="addStep()"
+        expand="block"
+        fill="clear"
+        shape="round"
+        class="ion-padding-start"
+      >
+        Ajouter une étape
+      </ion-button>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Ingrédients
+      </ion-list-header>
+      <ng-container
+        formArrayName="ingredients"
+        *ngFor="let ingredient of ingredients.controls; let i = index"
+      >
+        <ion-item>
+          <ion-icon
+            slot="start"
+            [src]="
+              'assets/icon/food-categories/' +
+              ingredient?.value?.food?.food_category?.icon
+            "
+          ></ion-icon>
+          <ion-label>
+            {{ ingredient?.value?.food?.name }}
+            <p>{{ places[ingredient?.value?.food?.place] }}</p>
+          </ion-label>
+          <ion-text slot="end" class="recipe__form__foods-quantity">
+            {{ ingredient?.value?.quantity + ingredient?.value?.food?.unit }}
+          </ion-text>
+          <ion-icon
+            slot="end"
+            name="close-circle"
+            color="danger"
+            size="small"
+            (click)="removeIngredient(i)"
+          ></ion-icon>
+        </ion-item>
+      </ng-container>
+      <ion-button
+        (click)="addIngredient()"
+        expand="block"
+        fill="clear"
+        shape="round"
+        class="ion-padding-start"
+      >
+        Ajouter un ingrédient
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>
