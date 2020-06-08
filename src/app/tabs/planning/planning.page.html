@@ -38,6 +38,58 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <planning-card></planning-card> -->
+<ion-content class="planning__content">
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider sticky="true">
+        <ion-label>Petit-déjeûner</ion-label>
+      </ion-item-divider>
+
+      <ion-item detail="true">
+        <ion-icon
+          slot="start"
+          src="/assets/icon/recipe-categories/snack.svg"
+        ></ion-icon>
+        <ion-label>
+          <h2>Acai bowl</h2>
+          <p class="planning__list-infos">
+            <ion-icon
+              class="planning__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            10 min
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item detail="true">
+        <ion-icon slot="start" src="assets/icon/food-categories/drink.svg">
+        </ion-icon>
+        <ion-label>
+          <h2 class="planning__list-content planning__list-mb">
+            Jus d'orange
+            <ion-badge slot="end" color="secondary">
+              20cl
+            </ion-badge>
+          </h2>
+          <p class="planning__list-content planning__list-text">
+            <ion-text color="medium">
+              Expire le : 10/06/2020
+            </ion-text>
+            <ion-text color="medium">
+              Réfrigérateur
+            </ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider sticky="true">
+        <ion-label>Déjeûner</ion-label>
+      </ion-item-divider>
+
+      <ion-item-divider sticky="true">
+        <ion-label>Dîner</ion-label>
+      </ion-item-divider>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

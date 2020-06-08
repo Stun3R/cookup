@@ -38,4 +38,31 @@
       font-family: "SFProText";
     }
   }
+
+  &__list {
+    &-infos {
+      display: flex;
+    }
+
+    &-icon {
+      margin: auto 5px auto 0;
+    }
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-text {
+      font-size: 0.75rem;
+    }
+
+    &-mb {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content {
+    --background: #f1f1f6;
+  }
 }
