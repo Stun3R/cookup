@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TabsPage } from "./tabs.page";
 import { StockViewResolverService } from "../resolver/stockViewResolver/stock-view-resolver.service";
+import { RecipeViewResolverService } from "../resolver/recipeViewResolver/recipe-view-resolver.service";
 
 const routes: Routes = [
   {
@@ -36,7 +37,10 @@ const routes: Routes = [
           import("./recipes/recipes.module").then((m) => m.RecipesPageModule),
       },
       {
-        path: "recipes/view",
+        path: "recipes/:id",
+        resolve: {
+          data: RecipeViewResolverService,
+        },
         loadChildren: () =>
           import("../pages/recipe-view/recipe-view.module").then(
             (m) => m.RecipeViewPageModule

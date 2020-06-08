@@ -19,7 +19,7 @@
   </ion-toolbar>
   <ion-toolbar>
     <section class="stocks__section">
-      <div class="stocks__categories" (click)="switchPlace('')">
+      <div class="stocks__categories" (click)="switchPlace('all')">
         <span class="stocks__categories-type">
           Tous
           <ion-badge
@@ -33,7 +33,7 @@
           >•</ion-text
         >
       </div>
-      <div class="stocks__categories" (click)="currentPlace = 'fridge'">
+      <div class="stocks__categories" (click)="switchPlace('fridge')">
         <span class="stocks__categories-type">
           Frigo
           <ion-badge
@@ -47,7 +47,7 @@
           •
         </ion-text>
       </div>
-      <div class="stocks__categories" (click)="currentPlace = 'freezer'">
+      <div class="stocks__categories" (click)="switchPlace('freezer')">
         <span class="stocks__categories-type">
           Congélateur
           <ion-badge
@@ -61,7 +61,7 @@
           •
         </ion-text>
       </div>
-      <div class="stocks__categories" (click)="currentPlace = 'pantry'">
+      <div class="stocks__categories" (click)="switchPlace('pantry')">
         <span class="stocks__categories-type">
           Cellier
           <ion-badge

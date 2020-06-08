@@ -36,3 +36,13 @@ export class StoreConstants {
   public static readonly JWT = "jwt";
   public static readonly USER = "user";
 }
+
+export const Tamer = "Lol";
+
+export const RecipesCategories = {
+  snack: "Apéritifs",
+  appetizers: "Entrées",
+  dish: "Plats",
+  dessert: "Desserts",
+  drink: "Boissons",
+};

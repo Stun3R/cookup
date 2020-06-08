@@ -87,11 +87,14 @@ export class StocksPage implements OnInit {
     this.foods[place] = response.data.foods;
   }
 
-  switchPlace(place: Place) {
+  async switchPlace(place: Place) {
     if (this.currentPlace === place) {
       return console.log("REFRESH");
     }
     this.currentPlace = place;
+    this.foods[place] = [];
+    console.log(place);
+    await this.getFoodsByPlace(place);
   }
 
   async deleteFood(id: string, index: number) {
