@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/Cook-Up/cookup/compare/v0.3.0...v0.4.0) (2020-06-08)
+
+
+### Features
+
+* **pages:planning:list:** create planning list for planning page ([ec48687](https://github.com/Cook-Up/cookup/commit/ec4868730db5001ec2bb5d7d174287f8fa6bb351))
+* **pages:recipes:** create recipes management ([a32335e](https://github.com/Cook-Up/cookup/commit/a32335e6798e0a634a5002ed3b53630c40691c0a))
+
 ## [0.3.0](https://github.com/Cook-Up/cookup/compare/v0.2.0...v0.3.0) (2020-06-07)
 
 
