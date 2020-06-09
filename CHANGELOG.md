@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/Cook-Up/cookup/compare/v0.4.0...v0.4.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **services:strapi:** fix forgotPassword method body ([61c7251](https://github.com/Cook-Up/cookup/commit/61c72517c3b1a524236f76da94228ddde52fa7cf))
+
 ## [0.4.0](https://github.com/Cook-Up/cookup/compare/v0.3.0...v0.4.0) (2020-06-08)
 
 
