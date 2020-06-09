@@ -108,7 +108,7 @@ export class StrapiService {
           "/auth/forgot-password",
           ErrorMode.Alert,
           {
-            body: email,
+            body: { email },
           }
         ).pipe(
           switchMap(() => {
