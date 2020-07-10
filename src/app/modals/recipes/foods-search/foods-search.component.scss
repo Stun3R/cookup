@@ -29,6 +29,17 @@
 
   &__content {
     --background: #f1f1f6;
+    &-badge {
+      margin-left: 8px;
+      margin-bottom: 4px;
+    }
+    &-list-header {
+      --background: unset;
+    }
+
+    &-item {
+      padding-right: 8px;
+    }
   }
 
   &__list {
@@ -44,5 +55,8 @@
     &-mb {
       margin-bottom: 10px;
     }
+  }
+  &-txtr {
+    text-align: right;
   }
 }

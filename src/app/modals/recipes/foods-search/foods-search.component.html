@@ -42,7 +42,7 @@
             {{ food?.name }}
           </h2>
           <p class="stocks__list-content stocks__list-infos">
-            <ion-text color="medium" style="text-align: right;">
+            <ion-text color="medium" class="stocks-txtr">
               {{ places[food?.place] }}
             </ion-text>
           </p>
@@ -51,7 +51,7 @@
     </ng-container>
 
     <ng-container *ngIf="!openSearch">
-      <ion-list-header style="--background: unset;" class="ion-padding-bottom">
+      <ion-list-header class="ion-padding-bottom stocks__content-list-header">
         <ion-text>
           Ingrédient sélectionné
         </ion-text>
@@ -59,7 +59,7 @@
           *ngIf="!food"
           color="warning"
           mode="ios"
-          style="margin-left: 8px; margin-bottom: 4px;"
+          class="stocks__content-badge"
           >Aucun</ion-badge
         >
       </ion-list-header>
@@ -74,7 +74,7 @@
             {{ food?.name }}
           </h2>
           <p class="stocks__list-content stocks__list-infos">
-            <ion-text color="medium" style="text-align: right;">
+            <ion-text color="medium" class="stocks-txtr">
               {{ places[food?.place] }}
             </ion-text>
           </p>
@@ -87,7 +87,7 @@
         ></ion-icon>
       </ion-item>
 
-      <ion-item lines="none" *ngIf="food" style="padding-right: 8px;">
+      <ion-item lines="none" *ngIf="food" class="stocks__content-item">
         <ion-label>
           Quantité
           <ion-text color="danger">*</ion-text>
@@ -98,7 +98,7 @@
           [value]="0"
           type="number"
           inputmode="decimal"
-          style="text-align: right;"
+          class="stocks-txtr"
         ></ion-input>
         <ion-text>
           {{ food?.unit }}

@@ -1,8 +1,19 @@
 .createhouse {
+  &__toolbar {
+    margin-right: 0;
+  }
+  &__info {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
   &__form {
     ion-item {
       --padding-start: 0;
       --background: none;
+    }
+
+    &-item {
+      margin-bottom: 1rem;
     }
 
     &-btn {

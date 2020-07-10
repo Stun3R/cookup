@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button (click)="cancel()" color="info">
         <ion-icon
-          style="margin-right: 0;"
+          class="createhouse__toolbar"
           slot="start"
           name="chevron-back"
         ></ion-icon>
@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div style="text-align: center; margin-bottom: 2rem;">
+  <div class="createhouse__info">
     <h1>Nom et jour de course de la maison</h1>
     <p>
       Attribuez un nom à votre maison afin de l'identifier plus facilement. Le
@@ -27,7 +27,7 @@
     [formGroup]="createHomeForm"
     (ngSubmit)="onSubmit()"
   >
-    <ion-item style="margin-bottom: 1rem;">
+    <ion-item class="createhouse__form-item">
       <ion-label position="floating">
         Nom de maison<ion-text color="danger">*</ion-text>
       </ion-label>

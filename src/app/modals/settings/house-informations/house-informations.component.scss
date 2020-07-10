@@ -1,4 +1,8 @@
 .updatehouse {
+  &__toolbar {
+    margin-right: 0;
+  }
+
   &__btn {
     &-editable {
       font-weight: 600;
@@ -10,12 +14,23 @@
       --background: none;
     }
 
+    &-item {
+      margin-bottom: 1rem;
+    }
+
+    &-input {
+      text-align: right;
+    }
+
     &-btn {
       margin-top: 2rem;
       --background: #ffffff;
       --color: black;
       --border-radius: 16px;
     }
+  }
+  &-courseday {
+    padding-right: 10px;
   }
 }
 

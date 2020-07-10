@@ -24,22 +24,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-thumbnail
-    style="
-      height: 160px;
-      width: 160px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      margin-bottom: 2rem;
-      margin-top: 1rem;
-    "
-  >
-    <img style="object-fit: contain;" [src]="food?.image" />
+  <ion-thumbnail class="updatefood__content-tbn">
+    <img class="updatefood__content-img" [src]="food?.image" />
   </ion-thumbnail>
 
   <form class="updatefood__form" [formGroup]="updateFoodForm">
-    <ion-grid style="margin-bottom: 0.5rem; padding: 0;">
+    <ion-grid class="updatefood__form-grid">
       <ion-row class="ion-no-padding">
         <ion-col size="8" class="ion-no-padding">
           <ion-item>
@@ -53,26 +43,23 @@
               [readonly]="!isEditable"
               type="number"
               inputmode="decimal"
-              style="text-align: right;"
+              class="updatefood__form-txtr"
             ></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="4" class="ion-no-padding">
-          <ion-item style="text-align: right;">
+          <ion-item class="updatefood__form-txtr">
             <ion-select
               formControlName="unit"
               interface="popover"
-              style="max-width: 100%; width: 100%;"
+              class="updatefood__form-select"
               *ngIf="isEditable"
             >
               <ion-select-option *ngFor="let unit of units" [value]="unit">
                 {{ unit }}
               </ion-select-option>
             </ion-select>
-            <ion-text
-              *ngIf="!isEditable"
-              style="width: 100%; padding-right: 10%;"
-            >
+            <ion-text *ngIf="!isEditable" class="updatefood__form-txt">
               {{ f?.unit?.value }}
             </ion-text>
           </ion-item>
@@ -80,7 +67,7 @@
       </ion-row>
     </ion-grid>
 
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="updatefood__form-item">
       <ion-label>
         Categorie
         <ion-text color="danger">*</ion-text>
@@ -105,7 +92,7 @@
       </ion-item>
     </ion-item>
 
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="updatefood__form-item">
       <ion-label>
         Stockage
         <ion-text color="danger">*</ion-text>

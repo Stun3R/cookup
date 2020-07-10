@@ -1,3 +1,16 @@
+.houseqrcode {
+  &__toolbar {
+    margin-right: 0;
+  }
+  &-qrcode {
+    display: flex;
+    height: 100%;
+  }
+  &-mxauto {
+    margin: auto;
+  }
+}
+
 ion-content {
   --background: #f1f1f6;
 }

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button *ngIf="!isEditable" (click)="cancel()" color="info">
         <ion-icon
-          style="margin-right: 0;"
+          class="updateuser__toolbar"
           slot="start"
           name="chevron-back"
         ></ion-icon>
@@ -27,15 +27,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div style="margin-bottom: 2rem; margin-top: 2rem;">
-    <ion-avatar
-      style="height: 96px; width: 96px; margin-left: auto; margin-right: auto;"
-    >
+  <div class="updateuser__content">
+    <ion-avatar class="updateuser__content-avatar">
       <img [src]="'https://eu.ui-avatars.com/api/?name=' + user?.username" />
     </ion-avatar>
   </div>
   <form class="updateuser__form" [formGroup]="updateUserForm">
-    <ion-item style="margin-bottom: 1rem;">
+    <ion-item class="updateuser__form-item">
       <ion-label>
         Nom d'utilisateur
         <ion-text color="danger">*</ion-text>
@@ -44,11 +42,11 @@
         maxlength="20"
         formControlName="username"
         type="text"
-        style="text-align: right;"
+        class="updateuser__form-input"
         [readonly]="!isEditable"
       ></ion-input>
     </ion-item>
-    <ion-item style="margin-bottom: 1rem;">
+    <ion-item class="updateuser__form-item">
       <ion-label>
         Courriel
         <ion-text color="danger">*</ion-text>
@@ -56,7 +54,7 @@
       <ion-input
         formControlName="email"
         type="email"
-        style="text-align: right;"
+        class="updateuser__form-input"
         [readonly]="!isEditable"
       ></ion-input>
     </ion-item>

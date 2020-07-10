@@ -16,6 +16,43 @@
       --color: black;
       --border-radius: 16px;
     }
+
+    &-grid {
+      margin-bottom: 0.5rem;
+      padding: 0;
+    }
+
+    &-txtr {
+      text-align: right;
+    }
+
+    &-select {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    &-txt {
+      width: 100%;
+      padding-right: 10%;
+    }
+
+    &-item {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &__content {
+    &-tbn {
+      height: 160px;
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    &-img {
+      object-fit: contain;
+    }
   }
 }
 
