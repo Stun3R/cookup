@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {}
 
-  ionViewWillLeave() {
-    StatusBar.setStyle({ style: StatusBarStyle.Light });
+  async ionViewWillLeave() {
+    await StatusBar.setStyle({ style: StatusBarStyle.Light });
   }
 }

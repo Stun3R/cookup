@@ -1,0 +1,14 @@
+.food {
+  &-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-infos {
+    font-size: 0.75rem;
+  }
+
+  &-mb {
+    margin-bottom: 10px;
+  }
+}

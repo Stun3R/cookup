@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal(false)" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajouter une recette</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="info"
+        class="stocks-btn"
+        [disabled]="!recipe"
+        (click)="closeModal(true)"
+      >
+        OK
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class]="!openSearch ? 'stocks__content' : ''">
+  <ion-searchbar
+    placeholder="Trouver un ingrédient"
+    show-cancel-button="focus"
+    cancel-button-text="Annuler"
+    (ionChange)="searchRecipes($event)"
+    (ionCancel)="setOpenSearch(false)"
+    (ionFocus)="setOpenSearch(true)"
+    animated
+  ></ion-searchbar>
+  <ion-list>
+    <ng-container *ngIf="openSearch">
+      <ion-item
+        lines="none"
+        *ngFor="let recipe of recipes"
+        (click)="setRecipe(recipe)"
+      >
+        <ion-icon
+          slot="start"
+          [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
+        ></ion-icon>
+        <ion-label>
+          <h2>{{ recipe?.name }}</h2>
+          <p class="recipes__list-infos">
+            <ion-icon
+              class="recipes__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            {{
+              recipe?.preparation | dayjsRecipe: "HH:mm:ss.SSS":recipe?.cooking
+            }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+
+    <ng-container *ngIf="!openSearch">
+      <ion-list-header style="--background: unset;" class="ion-padding-bottom">
+        <ion-text>
+          Recette sélectionnée
+        </ion-text>
+        <ion-badge
+          *ngIf="!recipe"
+          color="warning"
+          mode="ios"
+          style="margin-left: 8px; margin-bottom: 4px;"
+        >
+          Aucune
+        </ion-badge>
+      </ion-list-header>
+      <ion-item *ngIf="recipe">
+        <ion-icon
+          slot="start"
+          [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
+        ></ion-icon>
+        <ion-label>
+          <h2>{{ recipe?.name }}</h2>
+          <p class="recipes__list-infos">
+            <ion-icon
+              class="recipes__list-icon"
+              name="hourglass-outline"
+            ></ion-icon>
+            {{
+              recipe?.preparation | dayjsRecipe: "HH:mm:ss.SSS":recipe?.cooking
+            }}
+          </p>
+        </ion-label>
+        <ion-icon
+          slot="end"
+          name="close-circle"
+          color="danger"
+          (click)="removeRecipe()"
+        ></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

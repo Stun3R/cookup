@@ -10,6 +10,9 @@ import { FoodCreateComponent } from "../modals/foods/food-create/food-create.com
 import { RecipesCreateComponent } from "../modals/recipes/recipes-create/recipes-create.component";
 import { FoodsSearchComponent } from "../modals/recipes/foods-search/foods-search.component";
 import { IonicSelectableModule } from "ionic-selectable";
+import { MealCreateComponent } from "../modals/planning/meal-create/meal-create.component";
+import { RecipesSearchComponent } from "../modals/planning/recipes-search/recipes-search.component";
+import { DayjsRecipePipe } from "../pipes/dates/dayjs-recipe.pipe";
 
 @NgModule({
   imports: [
@@ -24,12 +27,17 @@ import { IonicSelectableModule } from "ionic-selectable";
     FoodCreateComponent,
     RecipesCreateComponent,
     FoodsSearchComponent,
+    MealCreateComponent,
+    RecipesSearchComponent,
   ],
   declarations: [
     TabsPage,
     FoodCreateComponent,
     RecipesCreateComponent,
     FoodsSearchComponent,
+    MealCreateComponent,
+    RecipesSearchComponent,
+    DayjsRecipePipe,
   ],
 })
 export class TabsPageModule {}

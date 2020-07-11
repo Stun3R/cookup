@@ -13,6 +13,7 @@ import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
 import { RecipesCreateComponent } from "../modals/recipes/recipes-create/recipes-create.component";
 import { StorageService } from "../services/storage/storage.service";
+import { MealCreateComponent } from "../modals/planning/meal-create/meal-create.component";
 
 @Component({
   selector: "app-tabs",
@@ -132,6 +133,20 @@ export class TabsPage {
     const user: User = await this.storage.getItem(StoreConstants.USER);
     const modal = await this.modalController.create({
       component: RecipesCreateComponent,
+      componentProps: {
+        user,
+      },
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
+    });
+
+    await modal.present();
+  }
+
+  async createDailyMenu() {
+    const user: User = await this.storage.getItem(StoreConstants.USER);
+    const modal = await this.modalController.create({
+      component: MealCreateComponent,
       componentProps: {
         user,
       },

@@ -9,6 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sync:ios": "ionic capacitor sync ios",
+    "copy:ios": "ionic capacitor copy ios",
+    "open:ios": "ionic capacitor open ios",
     "run:ios": "ionic capacitor run ios -l --external",
     "commit": "git-cz"
   },

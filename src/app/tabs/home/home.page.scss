@@ -42,3 +42,15 @@
 ion-item {
   --inner-border-width: 0;
 }
+
+.foods {
+  &__card {
+    box-shadow: unset;
+    border-radius: 16px;
+    margin-top: 10px;
+
+    &-content {
+      margin: 12px 0px;
+    }
+  }
+}

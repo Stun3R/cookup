@@ -27,6 +27,12 @@ export class StocksPage implements OnInit {
     freezer: [],
     pantry: [],
   };
+  private countPlaces = {
+    all: 0,
+    fridge: 0,
+    freezer: 0,
+    pantry: 0,
+  };
 
   constructor(
     private apollo: Apollo,
@@ -47,7 +53,8 @@ export class StocksPage implements OnInit {
       pantry: [],
     };
     this.currentHouseId = user.current_house.id;
-    return await this.getFoodsByPlace(this.currentPlace);
+    await this.getFoodsCount();
+    await this.getFoodsByPlace(this.currentPlace);
   }
 
   async getFoodsByPlace(place: Place) {
@@ -87,13 +94,18 @@ export class StocksPage implements OnInit {
     this.foods[place] = response.data.foods;
   }
 
+  async getFoodsCount() {
+    const count: any = await this.strapi.getEntryCount("foods").toPromise();
+    this.countPlaces = count;
+  }
+
   async switchPlace(place: Place) {
     if (this.currentPlace === place) {
       return console.log("REFRESH");
     }
     this.currentPlace = place;
     this.foods[place] = [];
-    console.log(place);
+    await this.getFoodsCount();
     await this.getFoodsByPlace(place);
   }
 

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button
-        [text]="Retour"
+        text="Retour"
         defaultHref="/private/recipes"
         color="info"
       ></ion-back-button>
@@ -50,17 +50,17 @@
           class="recipe__title-icon"
           src="assets/icon/recipes/prepare.svg"
         ></ion-icon>
-        <span class="recipe__title-infos"
-          >{{ recipe?.preparation | dayjs:'HH:mm:ss.SSS' }}</span
-        >
+        <span class="recipe__title-infos">
+          {{ recipe?.preparation | dayjsRecipe:'HH:mm:ss.SSS' }}
+        </span>
         <span class="recipe__title-divider"></span>
         <ion-icon
           class="recipe__title-icon"
           src="assets/icon/recipes/cook.svg"
         ></ion-icon>
-        <span class="recipe__title-infos"
-          >{{ recipe?.cooking | dayjs:'HH:mm:ss.SSS' }}</span
-        >
+        <span class="recipe__title-infos">
+          {{ recipe?.cooking | dayjsRecipe:'HH:mm:ss.SSS' }}
+        </span>
       </ion-text>
     </ion-list-header>
 

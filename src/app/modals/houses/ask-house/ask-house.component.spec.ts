@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { HouseJoinComponent } from './house-join.component';
+import { AskHouseComponent } from './ask-house.component';
 
-describe('HouseJoinComponent', () => {
-  let component: HouseJoinComponent;
-  let fixture: ComponentFixture<HouseJoinComponent>;
+describe('AskHouseComponent', () => {
+  let component: AskHouseComponent;
+  let fixture: ComponentFixture<AskHouseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HouseJoinComponent ],
+      declarations: [ AskHouseComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HouseJoinComponent);
+    fixture = TestBed.createComponent(AskHouseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

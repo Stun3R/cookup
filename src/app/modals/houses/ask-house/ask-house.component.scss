@@ -1,0 +1,19 @@
+ion-content {
+  --ion-font-family: "SFProText";
+}
+
+.askhouse {
+  &-btn {
+    --background: #ffffff;
+    --color: black;
+    --border-radius: 16px;
+  }
+}
+
+ion-list {
+  background: unset;
+}
+
+ion-content {
+  --ion-font-family: "SFProText";
+}

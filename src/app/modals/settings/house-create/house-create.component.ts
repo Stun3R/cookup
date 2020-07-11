@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { StrapiService } from "src/app/services/strapi/strapi.service";
 import { User, StoreConstants } from "src/app/interfaces";
-import { NavParams } from "@ionic/angular";
+import { NavParams, ModalController } from "@ionic/angular";
 import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
 import { StorageService } from "src/app/services/storage/storage.service";
@@ -22,7 +22,8 @@ export class HouseCreateComponent implements OnInit {
     private strapi: StrapiService,
     private navParams: NavParams,
     private apollo: Apollo,
-    private storage: StorageService
+    private storage: StorageService,
+    private modalController: ModalController
   ) {}
 
   // convenience getter for easy access to form fields
@@ -44,6 +45,9 @@ export class HouseCreateComponent implements OnInit {
           current_house: house.id,
         })
         .toPromise();
+      if (this.callback === null) {
+        return this.modalController.dismiss({ refresh: true });
+      }
       const nav = document.querySelector("ion-nav");
       this.callback(true).then(() => {
         nav.pop();
@@ -63,6 +67,9 @@ export class HouseCreateComponent implements OnInit {
 
   cancel() {
     const nav = document.querySelector("ion-nav");
+    if (this.callback === null) {
+      return nav.pop();
+    }
     this.callback(false).then(() => {
       nav.pop();
     });

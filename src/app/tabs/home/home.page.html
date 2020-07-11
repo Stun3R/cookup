@@ -1,6 +1,20 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title size="large" class="home__toolbar-title">Bienvenue</ion-title>
+    <ion-title
+      class="home__toolbar-title"
+      style="
+        padding-bottom: 6px;
+        padding-left: unset;
+        padding-right: unset;
+        -webkit-padding-start: 16px;
+        padding-inline-start: 16px;
+        -webkit-padding-end: 16px;
+        padding-inline-end: 16px;
+        text-align: left;
+        font-weight: 700;
+      "
+      >Bienvenue</ion-title
+    >
     <ion-buttons slot="end">
       <ion-button (click)="presentUserPreferences()">
         <ion-avatar slot="end" class="home__toolbar-avatar">
@@ -10,7 +24,20 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-title size="large" class="home__toolbar-title">
+    <ion-title
+      class="home__toolbar-title"
+      style="
+        padding-bottom: 6px;
+        padding-left: unset;
+        padding-right: unset;
+        -webkit-padding-start: 16px;
+        padding-inline-start: 16px;
+        -webkit-padding-end: 16px;
+        padding-inline-end: 16px;
+        text-align: left;
+        font-weight: 700;
+      "
+    >
       {{ user.username }}
     </ion-title>
   </ion-toolbar>
@@ -34,5 +61,14 @@
         Votre liste de course est prête
       </ion-text>
     </ion-item>
+  </ion-card>
+
+  <ion-text color="dark">
+    <h5 class="home__title">
+      Expiration des aliments
+    </h5>
+  </ion-text>
+  <ion-card class="foods__card" *ngFor="let food of foods; let i = index">
+    <food-card root="home/stocks" [food]="food"></food-card>
   </ion-card>
 </ion-content>

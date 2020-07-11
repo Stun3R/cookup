@@ -69,6 +69,36 @@ export class StrapiService {
    * @param identifier Can either be an email or a username.
    * @param password
    */
+  register(credentials: {
+    username: string;
+    email: string;
+    password: string;
+  }): Observable<any> {
+    return this.clearToken().pipe(
+      switchMap(() => {
+        return this.request<Authentication>(
+          "post",
+          "/auth/local/register",
+          ErrorMode.Alert,
+          { body: credentials }
+        ).pipe(
+          take(1),
+          switchMap(async (res: Authentication) => {
+            let decoded = helper.decodeToken(res.jwt);
+            this.userData.next(decoded);
+            let storageObs = this.setToken(res.jwt);
+            return storageObs;
+          })
+        );
+      })
+    );
+  }
+
+  /**
+   * Login by getting an authentication token.
+   * @param identifier Can either be an email or a username.
+   * @param password
+   */
   login(credentials: {
     identifier: string;
     password: string;
@@ -202,7 +232,7 @@ export class StrapiService {
    */
   getEntries(
     contentTypePluralized: string,
-    params?: HttpParams
+    params?: object
   ): Observable<Object[]> {
     return this.request<Object[]>(
       "get",
@@ -219,7 +249,7 @@ export class StrapiService {
    */
   public getEntryCount(
     contentTypePluralized: string,
-    params?: HttpParams
+    params?: object
   ): Observable<Object> {
     return this.request<Object>(
       "get",

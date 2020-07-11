@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajouter un repas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="info"
+        class="createrecipe-btn"
+        [disabled]="createMealForm.invalid"
+        (click)="handleSubmit()"
+      >
+        OK
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-end ion-padding-vertical">
+  <form
+    [formGroup]="createMealForm"
+    (ngSubmit)="onSubmit()"
+    class="createrecipe__form"
+  >
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Quand ?
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-datetime
+        formControlName="when"
+        displayFormat="DD/MM/YYYY"
+        min="2020"
+        max="2100"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 0.5rem;">
+      <ion-label>
+        Type de repas
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-select formControlName="type" interface="popover">
+        <ion-select-option
+          *ngFor="let type of types; let i = index"
+          [value]="i"
+        >
+          {{ type }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header>
+        Recettes
+      </ion-list-header>
+      <ng-container
+        formArrayName="recipes"
+        *ngFor="let recipe of recipes.controls; let i = index"
+      >
+        <ion-item>
+          <ion-icon
+            slot="start"
+            [src]="
+              '/assets/icon/recipe-categories/' +
+              recipe?.value?.category +
+              '.svg'
+            "
+          ></ion-icon>
+          <ion-label>
+            <h2>{{ recipe?.value?.name }}</h2>
+            <p class="recipes__list-infos">
+              <ion-icon
+                class="recipes__list-icon"
+                name="hourglass-outline"
+              ></ion-icon>
+              {{
+                recipe?.value?.preparation
+                  | dayjsRecipe: "HH:mm:ss.SSS":recipe?.value?.cooking
+              }}
+            </p>
+          </ion-label>
+          <ion-icon
+            slot="end"
+            name="close-circle"
+            color="danger"
+            size="small"
+            (click)="removeRecipe(i)"
+          ></ion-icon>
+        </ion-item>
+      </ng-container>
+      <ion-button
+        (click)="addRecipe()"
+        expand="block"
+        fill="clear"
+        shape="round"
+        class="ion-padding-start"
+      >
+        Ajouter une recette
+      </ion-button>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Ingrédients
+      </ion-list-header>
+      <ng-container
+        formArrayName="aliments"
+        *ngFor="let aliment of aliments.controls; let i = index"
+      >
+        <ion-item>
+          <ion-icon
+            slot="start"
+            [src]="
+              'assets/icon/food-categories/' +
+              aliment?.value?.food?.food_category?.icon
+            "
+          ></ion-icon>
+          <ion-label>
+            {{ aliment?.value?.food?.name }}
+            <p>{{ places[aliment?.value?.food?.place] }}</p>
+          </ion-label>
+          <ion-text slot="end" class="recipe__form__foods-quantity">
+            {{ aliment?.value?.quantity + aliment?.value?.food?.unit }}
+          </ion-text>
+          <ion-icon
+            slot="end"
+            name="close-circle"
+            color="danger"
+            size="small"
+            (click)="removeIngredient(i)"
+          ></ion-icon>
+        </ion-item>
+      </ng-container>
+      <ion-button
+        (click)="addIngredient()"
+        expand="block"
+        fill="clear"
+        shape="round"
+        class="ion-padding-start"
+      >
+        Ajouter un aliment
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>

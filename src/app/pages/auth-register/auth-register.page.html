@@ -1,80 +1,73 @@
-<ion-header>
+<ion-header class="auth-header" mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button
-        [text]="Retour"
+        text="Retour"
         defaultHref="auth"
         color="light"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>auth-register</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">
-        Courriel
-        <ion-text color="danger">*</ion-text>
-      </ion-label>
-      <ion-input
-        clearInput
-        required
-        formControlName="identifier"
-        type="email"
-      ></ion-input>
-    </ion-item>
-    <ion-item *ngIf="f.identifier.invalid && f.identifier.touched" lines="none">
-      <ion-text
-        *ngIf="f.identifier.errors.required"
-        color="danger"
-        class="form-error"
-      >
-        Email is required.
-      </ion-text>
-      <ion-text
-        *ngIf="f.identifier.errors.email"
-        color="danger"
-        class="form-error"
-      >
-        Please enter a valid email address.
-      </ion-text>
-    </ion-item>
+<ion-content class="auth" fullscreen [scrollY]="false">
+  <ion-grid fixed>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="10" class="ion-justify-content-center auth__connection">
+        <h1 class="auth__logo">S'inscrire</h1>
+        <form
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+          class="auth__connection__form"
+        >
+          <ion-item>
+            <ion-label position="floating">
+              Nom
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              clearInput
+              required
+              formControlName="username"
+              type="text"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              Courriel
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              clearInput
+              required
+              formControlName="email"
+              type="email"
+            ></ion-input>
+          </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">
-        Mot de passe
-        <ion-text color="danger">*</ion-text>
-      </ion-label>
-      <ion-input
-        required
-        formControlName="password"
-        type="password"
-      ></ion-input>
-    </ion-item>
-    <ion-item *ngIf="f.password.invalid && f.password.touched" lines="none">
-      <ion-text color="danger" class="form-error">
-        Please enter a valid password.
-      </ion-text>
-    </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              Mot de passe
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              required
+              formControlName="password"
+              type="password"
+            ></ion-input>
+          </ion-item>
 
-    <ion-button
-      block
-      color="primary"
-      type="submit"
-      [disabled]="registerForm.invalid"
-    >
-      Login
-    </ion-button>
-  </form>
-  <ion-button
-    [routerLink]="['/auth/forgot']"
-    expand="block"
-    fill="clear"
-    color="dark"
-    shape="round"
-  >
-    Mot de passe oublié ?
-  </ion-button>
+          <ion-button
+            expand="block"
+            color="light"
+            type="submit"
+            [disabled]="registerForm.invalid"
+            class="auth__connection__form-btn"
+          >
+            Créer un compte
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

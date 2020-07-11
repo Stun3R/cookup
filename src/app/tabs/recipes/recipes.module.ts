@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { RecipesPage } from "./recipes.page";
 
 import { RecipesPageRoutingModule } from "./recipes-routing.module";
-import { DayjsPipe } from "src/app/pipes/dates/dayjs.pipe";
+import { DayjsRecipePipe } from "src/app/pipes/dates/dayjs-recipe.pipe";
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { DayjsPipe } from "src/app/pipes/dates/dayjs.pipe";
     RouterModule.forChild([{ path: "", component: RecipesPage }]),
     RecipesPageRoutingModule,
   ],
-  declarations: [RecipesPage, DayjsPipe],
+  declarations: [RecipesPage, DayjsRecipePipe],
 })
 export class RecipesPageModule {}
