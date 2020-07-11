@@ -20,17 +20,9 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div style="margin-bottom: 2rem; margin-top: 1rem; text-align: center;">
-    <ion-thumbnail
-      style="
-        height: 160px;
-        width: 160px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-      "
-    >
-      <img style="object-fit: contain;" [src]="product?.imageUrl" />
+  <div class="createfood__info">
+    <ion-thumbnail class="createfood__info-img">
+      <img class="createfood__info-tbn" [src]="product?.imageUrl" />
     </ion-thumbnail>
 
     <p>
@@ -38,7 +30,7 @@
     </p>
   </div>
   <form class="createfood__form" [formGroup]="createFoodForm">
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="createfood__form-item">
       <ion-label>
         Nom
         <ion-text color="danger">*</ion-text>
@@ -47,11 +39,11 @@
         maxlength="40"
         formControlName="name"
         type="text"
-        style="text-align: right;"
+        class="createfood__form-input"
       ></ion-input>
     </ion-item>
 
-    <ion-grid style="margin-bottom: 0.5rem; padding: 0;">
+    <ion-grid class="createfood-grid">
       <ion-row class="ion-no-padding">
         <ion-col size="8" class="ion-no-padding">
           <ion-item>
@@ -64,16 +56,16 @@
               formControlName="quantity"
               type="number"
               inputmode="decimal"
-              style="text-align: right;"
+              class="createfood__form-input"
             ></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="4" class="ion-no-padding">
-          <ion-item style="text-align: right;">
+          <ion-item class="createfood__form-input">
             <ion-select
               formControlName="unit"
               interface="popover"
-              style="max-width: 100%; width: 100%;"
+              class="createfood-select"
             >
               <ion-select-option *ngFor="let unit of units" [value]="unit">
                 {{ unit }}
@@ -84,7 +76,7 @@
       </ion-row>
     </ion-grid>
 
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="createfood__form-item">
       <ion-label>
         Catégorie
         <ion-text color="danger">*</ion-text>
@@ -103,7 +95,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="createfood__form-item">
       <ion-label>
         Stockage
         <ion-text color="danger">*</ion-text>

@@ -1,7 +1,21 @@
 .updateuser {
+  &__toolbar {
+    margin-right: 0;
+  }
   &__btn {
     &-editable {
       font-weight: 600;
+    }
+  }
+
+  &__content {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    &-avatar {
+      height: 96px;
+      width: 96px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   &__form {
@@ -15,6 +29,12 @@
       --background: #ffffff;
       --color: black;
       --border-radius: 16px;
+    }
+    &-input {
+      text-align: right;
+    }
+    &-item {
+      margin-bottom: 1rem;
     }
   }
 }

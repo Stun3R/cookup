@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button (click)="cancel()" color="info">
         <ion-icon
-          style="margin-right: 0;"
+          class="housemembers__toolbar"
           slot="start"
           name="chevron-back"
         ></ion-icon>
@@ -17,7 +17,7 @@
 <ion-content class="ion-padding-top">
   <ion-list lines="none">
     <ion-item *ngFor="let user of house?.users">
-      <ion-avatar slot="start" style="width: 48px; height: 48px;">
+      <ion-avatar slot="start" class="housemembers-avatar">
         <img [src]="'https://eu.ui-avatars.com/api/?name=' + user?.username" />
       </ion-avatar>
       <ion-label>

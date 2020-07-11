@@ -2,17 +2,50 @@
   &-btn {
     font-weight: 600;
   }
+
+  &__info {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+
+    &-img {
+      height: 160px;
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    &-tbn {
+      object-fit: contain;
+    }
+  }
+
   &__form {
     ion-item {
       --padding-start: 0;
       --background: none;
     }
+
+    &-item {
+      margin-bottom: 0.5rem;
+    }
+
+    &-input {
+      text-align: right;
+    }
+  }
+
+  &-grid {
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
+
+  &-select {
+    max-width: 100%;
+    width: 100%;
   }
 }
 
-/* ion-content {
-  --ion-font-family: "SFProText";
-} */
 .input-label {
   display: inline-block;
 }

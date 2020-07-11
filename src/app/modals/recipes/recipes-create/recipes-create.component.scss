@@ -27,6 +27,14 @@
       --background: none;
     }
   }
+
+  &-item {
+    margin-bottom: 0.5rem;
+  }
+
+  &-text-r {
+    text-align: right;
+  }
 }
 
 /* ion-content {

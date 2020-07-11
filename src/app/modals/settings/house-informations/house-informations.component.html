@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button *ngIf="!isEditable" (click)="cancel()" color="info">
         <ion-icon
-          style="margin-right: 0;"
+          class="updatehouse__toolbar"
           slot="start"
           name="chevron-back"
         ></ion-icon>
@@ -32,7 +32,7 @@
     [formGroup]="updateHomeForm"
     (ngSubmit)="onSubmit()"
   >
-    <ion-item style="margin-bottom: 1rem;">
+    <ion-item class="updatehouse__form-item">
       <ion-label>
         Nom de maison
         <ion-text color="danger">*</ion-text>
@@ -41,7 +41,7 @@
         maxlength="20"
         formControlName="name"
         type="text"
-        style="text-align: right;"
+        class="updatehouse__form-input"
         [readonly]="!isEditable"
       ></ion-input>
     </ion-item>
@@ -64,7 +64,7 @@
         <ion-select-option [value]="6">Samedi</ion-select-option>
         <ion-select-option [value]="7">Dimanche</ion-select-option>
       </ion-select>
-      <ion-text *ngIf="!isEditable" style="padding-right: 10px;">
+      <ion-text *ngIf="!isEditable" class="updatehouse-courseday">
         {{ week[house.list_at - 1] }}
       </ion-text>
     </ion-item>

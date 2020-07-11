@@ -25,7 +25,7 @@
     (ngSubmit)="onSubmit()"
     class="createrecipe__form"
   >
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="createrecipe-item">
       <ion-label>
         Nom
         <ion-text color="danger">*</ion-text>
@@ -34,12 +34,12 @@
         maxlength="140"
         formControlName="name"
         type="text"
-        style="text-align: right;"
+        class="createrecipe-text-r"
         placeholder="Nom de votre recette"
       ></ion-input>
     </ion-item>
 
-    <ion-item style="margin-bottom: 0.5rem;">
+    <ion-item class="createrecipe-item">
       <ion-label>
         Catégorie
         <ion-text color="danger">*</ion-text>
