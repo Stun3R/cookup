@@ -31,68 +31,8 @@ export class FoodsSearchComponent implements OnInit {
 
   ngOnInit() {}
 
-  /*   searchFoods(event: { component: IonicSelectableComponent; text: string }) {
-    let text = event.text.trim().toLowerCase();
-    console.log(text);
-    event.component.startSearch();
-
-    // Close any running subscription.
-    if (this.foodsSubscription) {
-      this.foodsSubscription.unsubscribe();
-    }
-
-    if (!text) {
-      // Close any running subscription.
-      if (this.foodsSubscription) {
-        this.foodsSubscription.unsubscribe();
-      }
-
-      event.component.items = [];
-      event.component.endSearch();
-      return;
-    }
-
-    this.foodsSubscription = this.apollo
-      .query<any>({
-        query: gql`
-          query Foods($limit: Int, $house: ID, $name: String) {
-            foods(
-              limit: $limit
-              where: { house: $house, name_contains: $name }
-            ) {
-              id
-              name
-              quantity
-              unit
-              place
-              expire_at
-              food_category {
-                id
-                name
-                icon
-              }
-            }
-          }
-        `,
-        variables: {
-          limit: -1,
-          house: this.user.current_house.id,
-          name: text,
-        },
-      })
-      .subscribe((response: any) => {
-        // Subscription will be closed when unsubscribed manually.
-        if (this.foodsSubscription.closed) {
-          return;
-        }
-
-        event.component.items = response.data.foods;
-        event.component.endSearch();
-      });
-  } */
   searchFoods($event: { target: { value: string } }) {
     let text = $event.target.value.trim().toLowerCase();
-    console.log(text);
     // BOOLEAN START SEARCH
 
     // Close any running subscription.

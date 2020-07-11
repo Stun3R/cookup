@@ -1,10 +1,13 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import * as dayjs from "dayjs";
 
+require("dayjs/locale/fr");
+dayjs.locale("fr");
+
 @Pipe({
-  name: "dayjs",
+  name: "dayjsRecipe",
 })
-export class DayjsPipe implements PipeTransform {
+export class DayjsRecipePipe implements PipeTransform {
   transform(date: string, formatIn: string, date2: string): string {
     let result: dayjs.Dayjs;
     if (date2) {

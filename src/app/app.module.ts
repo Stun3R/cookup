@@ -1,6 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
+
+import { registerLocaleData } from "@angular/common";
+import localeFr from "@angular/common/locales/fr";
+registerLocaleData(localeFr);
 
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 
@@ -26,29 +30,20 @@ import { environment } from "src/environments/environment";
 import { StoreConstants } from "./interfaces";
 
 import { IonicSelectableModule } from "ionic-selectable";
+import { DayjsExpirePipe } from "./pipes/dates/dayjs-expire.pipe";
 
 export function jwtOptionsFactory(storage: StorageService) {
   return {
     tokenGetter: async () => {
       return storage.getItem(StoreConstants.JWT);
     },
-    whitelistedDomains: [
-      "localhost:1337",
-      "192.168.1.96:1337",
-      "dev-cookup-api.herokuapp.com",
-      "cookup-api.herokuapp.com",
-    ],
-    blacklistedRoutes: [
-      "localhost:1337/auth/local",
-      "192.168.1.96:1337/auth/local",
-      "dev-cookup-api.herokuapp.com/auth/local",
-      "cookup-api.herokuapp.com/auth/local",
-    ],
+    whitelistedDomains: [environment.domain],
+    blacklistedRoutes: [`${environment.domain}/auth/local`],
   };
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DayjsExpirePipe],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -68,6 +63,7 @@ export function jwtOptionsFactory(storage: StorageService) {
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LOCALE_ID, useValue: "fr-FR" },
     StorageService,
     QRScanner,
     BarcodeScanner,
@@ -102,7 +98,7 @@ export class AppModule {
       ({ graphQLErrors, networkError, response, operation }) => {
         if (graphQLErrors) {
           graphQLErrors.map((error) => {
-            console.log("tamer", error);
+            console.log(error);
             // Destroy the session if INVALID_TOKEN receieved from the server
             // Forcing user to login again
             /*             if (type === "INVALID_TOKEN") {

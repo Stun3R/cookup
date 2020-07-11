@@ -40,9 +40,9 @@ export class AppComponent {
     this.platform.ready().then(async () => {
       const user = await this.strapi.user.toPromise();
       if (user) {
-        this.navController.navigateRoot("/private");
+        await this.navController.navigateRoot("/private");
       } else {
-        this.navController.navigateRoot("/login");
+        await this.navController.navigateRoot("/login");
       }
       StatusBar.setStyle({ style: StatusBarStyle.Light });
       SplashScreen.hide();

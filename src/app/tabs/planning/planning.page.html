@@ -1,38 +1,32 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title size="large" class="planning__toolbar-title">
+    <ion-title
+      class="planning__toolbar-title"
+      style="
+        padding-bottom: 6px;
+        padding-left: unset;
+        padding-right: unset;
+        -webkit-padding-start: 16px;
+        padding-inline-start: 16px;
+        -webkit-padding-end: 16px;
+        padding-inline-end: 16px;
+        text-align: left;
+        font-weight: 700;
+      "
+    >
       Planning
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
     <section class="planning__calendar">
-      <div class="planning__date">
-        <span class="planning__date-day">L</span>
-        <span class="planning__date-nb">18</span>
-      </div>
-      <div class="planning__date planning__date-select">
-        <span class="planning__date-day">M</span>
-        <span class="planning__date-nb">19</span>
-      </div>
-      <div class="planning__date">
-        <span class="planning__date-day">M</span>
-        <span class="planning__date-nb">20</span>
-      </div>
-      <div class="planning__date">
-        <span class="planning__date-day">J</span>
-        <span class="planning__date-nb">21</span>
-      </div>
-      <div class="planning__date">
-        <span class="planning__date-day">V</span>
-        <span class="planning__date-nb">22</span>
-      </div>
-      <div class="planning__date">
-        <span class="planning__date-day">S</span>
-        <span class="planning__date-nb">23</span>
-      </div>
-      <div class="planning__date">
-        <span class="planning__date-day">D</span>
-        <span class="planning__date-nb">24</span>
+      <div
+        class="planning__date"
+        [class.planning__date-select]="isSame(day)"
+        (click)="selectDate(day)"
+        *ngFor="let day of days"
+      >
+        <span class="planning__date-day">{{ day | date:'EEEEE' }}</span>
+        <span class="planning__date-nb">{{ day | date:'dd' }}</span>
       </div>
     </section>
   </ion-toolbar>
@@ -40,56 +34,64 @@
 
 <ion-content class="planning__content">
   <ion-list>
-    <ion-item-group>
+    <ion-item-group *ngFor="let meal of meals">
       <ion-item-divider sticky="true">
-        <ion-label>Petit-déjeûner</ion-label>
+        <ion-label>{{ types[meal?.type] }}</ion-label>
       </ion-item-divider>
 
-      <ion-item detail="true">
-        <ion-icon
-          slot="start"
-          src="/assets/icon/recipe-categories/snack.svg"
-        ></ion-icon>
-        <ion-label>
-          <h2>Acai bowl</h2>
-          <p class="planning__list-infos">
-            <ion-icon
-              class="planning__list-icon"
-              name="hourglass-outline"
-            ></ion-icon>
-            10 min
-          </p>
-        </ion-label>
-      </ion-item>
+      <ng-container *ngIf="meal?.recipes?.length > 0">
+        <ion-item
+          detail="true"
+          *ngFor="let recipe of meal?.recipes"
+          [routerLink]="['/private/planning/recipes/' + recipe?.id]"
+        >
+          <ion-icon
+            slot="start"
+            [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
+          ></ion-icon>
+          <ion-label>
+            <h2>{{ recipe?.name }}</h2>
+            <p class="planning__list-infos">
+              <ion-icon
+                class="planning__list-icon"
+                name="hourglass-outline"
+              ></ion-icon>
+              {{ recipe?.preparation | dayjsRecipe:
+              "HH:mm:ss.SSS":recipe?.cooking }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ng-container>
 
-      <ion-item detail="true">
-        <ion-icon slot="start" src="assets/icon/food-categories/drink.svg">
-        </ion-icon>
-        <ion-label>
-          <h2 class="planning__list-content planning__list-mb">
-            Jus d'orange
-            <ion-badge slot="end" color="secondary">
-              20cl
-            </ion-badge>
-          </h2>
-          <p class="planning__list-content planning__list-text">
-            <ion-text color="medium">
-              Expire le : 10/06/2020
-            </ion-text>
-            <ion-text color="medium">
-              Réfrigérateur
-            </ion-text>
-          </p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-divider sticky="true">
-        <ion-label>Déjeûner</ion-label>
-      </ion-item-divider>
-
-      <ion-item-divider sticky="true">
-        <ion-label>Dîner</ion-label>
-      </ion-item-divider>
+      <ng-container *ngIf="meal?.aliments?.length > 0">
+        <ion-item
+          *ngFor="let aliment of meal?.aliments"
+          [routerLink]="['/private/planning/stocks/' + aliment?.food?.id]"
+        >
+          <ion-icon
+            slot="start"
+            [src]="'assets/icon/food-categories/' + aliment?.food?.food_category?.icon"
+          >
+          </ion-icon>
+          <ion-label>
+            <h2 class="planning__list-content planning__list-mb">
+              {{ aliment?.food?.name }}
+              <ion-badge slot="end" color="secondary">
+                {{ aliment?.quantity }}
+              </ion-badge>
+            </h2>
+            <p class="planning__list-content planning__list-text">
+              <span
+                [innerHTML]="aliment?.food?.expire_at | dayjsExpire"
+                style="font-weight: 600;"
+              ></span>
+              <ion-text color="medium">
+                {{ places[aliment?.food?.place] }}
+              </ion-text>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ng-container>
     </ion-item-group>
   </ion-list>
 </ion-content>

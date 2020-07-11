@@ -1,0 +1,28 @@
+<ion-item
+  class="food"
+  lines="none"
+  [routerLink]="['/private/' + root + '/' + food.id]"
+>
+  <ion-icon
+    slot="start"
+    [src]="'assets/icon/food-categories/' + food?.food_category?.icon"
+  >
+  </ion-icon>
+  <ion-label>
+    <h2 class="food-content food-mb">
+      {{ food?.name }}
+      <ion-badge slot="end" color="secondary">
+        {{ food?.quantity + food?.unit }}
+      </ion-badge>
+    </h2>
+    <p class="food-content food-infos">
+      <span
+        [innerHTML]="food?.expire_at | dayjsExpire"
+        style="font-weight: 600;"
+      ></span>
+      <ion-text color="medium">
+        {{ places[food?.place] }}
+      </ion-text>
+    </p>
+  </ion-label>
+</ion-item>

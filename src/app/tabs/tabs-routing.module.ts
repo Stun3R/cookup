@@ -20,10 +20,40 @@ const routes: Routes = [
           import("./home/home.module").then((m) => m.HomePageModule),
       },
       {
+        path: "home/stocks/:id",
+        resolve: {
+          data: StockViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/stock-view/stock-view.module").then(
+            (m) => m.StockViewPageModule
+          ),
+      },
+      {
         path: "planning",
         loadChildren: () =>
           import("./planning/planning.module").then(
             (m) => m.PlanningPageModule
+          ),
+      },
+      {
+        path: "planning/recipes/:id",
+        resolve: {
+          data: RecipeViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/recipe-view/recipe-view.module").then(
+            (m) => m.RecipeViewPageModule
+          ),
+      },
+      {
+        path: "planning/stocks/:id",
+        resolve: {
+          data: StockViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/stock-view/stock-view.module").then(
+            (m) => m.StockViewPageModule
           ),
       },
       {

@@ -26,7 +26,7 @@
             class="stocks__categories-badge"
             [color]="currentPlace === 'all' ? 'secondary' : 'light'"
           >
-            39
+            {{ countPlaces.all || 0 }}
           </ion-badge>
         </span>
         <ion-text [color]="currentPlace === 'all' ? 'secondary' : 'medium'"
@@ -40,7 +40,7 @@
             class="stocks__categories-badge"
             [color]="currentPlace === 'fridge' ? 'secondary' : 'light'"
           >
-            12
+            {{ countPlaces.fridge || 0 }}
           </ion-badge>
         </span>
         <ion-text [color]="currentPlace === 'fridge' ? 'secondary' : 'medium'">
@@ -54,7 +54,7 @@
             class="stocks__categories-badge"
             [color]="currentPlace === 'freezer' ? 'secondary' : 'light'"
           >
-            16
+            {{ countPlaces.freezer || 0 }}
           </ion-badge>
         </span>
         <ion-text [color]="currentPlace === 'freezer' ? 'secondary' : 'medium'">
@@ -68,7 +68,7 @@
             class="stocks__categories-badge"
             [color]="currentPlace === 'pantry' ? 'secondary' : 'light'"
           >
-            11
+            {{ countPlaces.pantry || 0 }}
           </ion-badge>
         </span>
         <ion-text [color]="currentPlace === 'pantry' ? 'secondary' : 'medium'">
@@ -82,55 +82,9 @@
 <ion-content class="stocks__content">
   <ion-searchbar placeholder="Rechercher un aliment..."></ion-searchbar>
 
-  <!--   <ion-item-divider>
-    <ion-label>F</ion-label>
-  </ion-item-divider>
-
-  <ion-item lines="none" detail="true">
-    <ion-icon slot="start" src="assets/icon/food-categories/fresh.svg">
-    </ion-icon>
-    <ion-label>
-      <h2 class="stocks__list-content stocks__list-mb">
-        Fromage de chèvre
-        <ion-badge slot="end" color="secondary">
-          300g
-        </ion-badge>
-      </h2>
-      <p class="stocks__list-content stocks__list-infos">
-        <ion-text color="medium">
-          Expire le : 09/06/2020
-        </ion-text>
-        <ion-text color="medium">
-          Réfrigérateur
-        </ion-text>
-      </p>
-    </ion-label>
-  </ion-item> -->
   <ion-list>
     <ion-item-sliding *ngFor="let food of foods[currentPlace]; let i = index">
-      <ion-item lines="none" [routerLink]="['/private/stocks/' + food.id]">
-        <ion-icon
-          slot="start"
-          [src]="'assets/icon/food-categories/' + food?.food_category?.icon"
-        >
-        </ion-icon>
-        <ion-label>
-          <h2 class="stocks__list-content stocks__list-mb">
-            {{ food?.name }}
-            <ion-badge slot="end" color="secondary">
-              {{ food?.quantity + food?.unit }}
-            </ion-badge>
-          </h2>
-          <p class="stocks__list-content stocks__list-infos">
-            <ion-text color="medium">
-              Expire le : {{ food?.expire_at | date: 'dd/LL/y' }}
-            </ion-text>
-            <ion-text color="medium">
-              {{ places[food?.place] }}
-            </ion-text>
-          </p>
-        </ion-label>
-      </ion-item>
+      <food-card root="stocks" [food]="food"></food-card>
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="deleteFood(food?.id, i)">
           <ion-icon slot="icon-only" name="trash" size="small"></ion-icon>

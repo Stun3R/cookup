@@ -12,7 +12,6 @@ import { HouseInformationsComponent } from "../house-informations/house-informat
 import { UserInformationsComponent } from "../user-informations/user-informations.component";
 import { UserEditPasswordComponent } from "../user-edit-password/user-edit-password.component";
 import { HouseQrcodeComponent } from "../house-qrcode/house-qrcode.component";
-import { HouseJoinComponent } from "../house-join/house-join.component";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 
 const { StatusBar } = Plugins;
@@ -98,7 +97,9 @@ export class UserPreferencesComponent implements OnInit {
   }
 
   async closeModal() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss({
+      refresh: this.refresh ? this.refresh : true,
+    });
   }
 
   async showHouseQRCode() {
@@ -164,6 +165,7 @@ export class UserPreferencesComponent implements OnInit {
     setTimeout(() => {
       this.showSelect = true;
     });
+    this.refresh = true;
   }
 
   async createHouse() {
@@ -181,7 +183,6 @@ export class UserPreferencesComponent implements OnInit {
         disableAnimations: true,
         formats: "QR_CODE",
       });
-      console.log("Barcode data", barcodeData);
       const loading = this.presentLoading();
       const user = await this.strapi
         .request("get", `/houses/${barcodeData.text}/join`, ErrorMode.Toast)

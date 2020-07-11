@@ -1,0 +1,48 @@
+.stocks {
+  &-btn {
+    font-weight: 600;
+  }
+  &__section {
+    display: flex;
+    flex-direction: row;
+  }
+  &__categories {
+    color: var(--ion-color-medium);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+    &-badge {
+      font-family: "SFProText";
+      font-weight: 500;
+      font-size: 0.75rem;
+    }
+
+    &-type {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: auto;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  &__content {
+    --background: #f1f1f6;
+  }
+
+  &__list {
+    &-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-infos {
+      font-size: 0.75rem;
+    }
+
+    &-mb {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar style="--border-width: 0;"></ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal" [scrollY]="false">
+  <div style="text-align: center; margin-bottom: 4rem;">
+    <h1 style="margin-top: 0;">Vous ne possèdez pas de Maison</h1>
+    <p>
+      Afin de bénificier des diverses fonctionnalités de CookUp', vous devez
+      créer ou rejoindre une Maison.
+    </p>
+  </div>
+
+  <ion-button
+    class="askhouse-btn"
+    expand="block"
+    color="light"
+    style="margin-bottom: 0.5rem;"
+    (click)="createHouse()"
+  >
+    Créer une maison
+  </ion-button>
+  <ion-button
+    class="askhouse-btn"
+    expand="block"
+    color="light"
+    (click)="joinHouse()"
+  >
+    Rejoindre une maison
+  </ion-button>
+
+  <ion-button
+    (click)="logout()"
+    expand="block"
+    class="askhouse-btn"
+    color="light"
+    style="
+      margin-top: 1rem;
+      --ion-color-contrast: var(--ion-color-danger) !important;
+    "
+  >
+    Déconnexion
+  </ion-button>
+</ion-content>

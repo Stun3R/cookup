@@ -6,6 +6,8 @@ import { FormsModule } from "@angular/forms";
 import { StocksPage } from "./stocks.page";
 
 import { StocksPageRoutingModule } from "./stocks-routing.module";
+import { DayjsExpirePipe } from "src/app/pipes/dates/dayjs-expire.pipe";
+import { FoodCardComponent } from "src/app/components/food-card/food-card/food-card.component";
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { StocksPageRoutingModule } from "./stocks-routing.module";
     RouterModule.forChild([{ path: "", component: StocksPage }]),
     StocksPageRoutingModule,
   ],
-  declarations: [StocksPage],
+  entryComponents: [FoodCardComponent],
+  declarations: [StocksPage, DayjsExpirePipe, FoodCardComponent],
 })
 export class StocksPageModule {}

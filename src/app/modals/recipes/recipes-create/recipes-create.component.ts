@@ -5,6 +5,9 @@ import { RecipesCategories, User } from "src/app/interfaces";
 import { FoodsSearchComponent } from "../foods-search/foods-search.component";
 import { StrapiService } from "src/app/services/strapi/strapi.service";
 import * as dayjs from "dayjs";
+require("dayjs/locale/fr");
+dayjs.locale("fr");
+
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
 
@@ -35,8 +38,8 @@ export class RecipesCreateComponent implements OnInit {
     this.createRecipeForm = this.formBuilder.group({
       name: ["", [Validators.required, Validators.maxLength(140)]],
       category: ["", [Validators.required]],
-      preparation: ["00:00", [Validators.required]],
-      cooking: ["00:00", [Validators.required]],
+      preparation: ["00:00:00", [Validators.required]],
+      cooking: ["00:00:00", [Validators.required]],
       steps: this.formBuilder.array(
         [],
         [Validators.required, Validators.minLength(1)]
@@ -81,12 +84,13 @@ export class RecipesCreateComponent implements OnInit {
 
     await modal.present();
 
-    const data = await modal.onDidDismiss();
+    const { data } = await modal.onDidDismiss();
+    console.log(data);
     if (data) {
       this.ingredients.push(
         this.formBuilder.control({
-          food: data.data.food,
-          quantity: data.data.quantity,
+          food: data.food,
+          quantity: data.quantity,
         })
       );
     }
@@ -103,7 +107,6 @@ export class RecipesCreateComponent implements OnInit {
     if (this.createRecipeForm.invalid) {
       return;
     }
-    console.log(this.createRecipeForm.value);
     await this.presentLoading();
     try {
       this.createRecipeForm.patchValue({

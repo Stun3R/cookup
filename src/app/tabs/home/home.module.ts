@@ -14,7 +14,9 @@ import { UserInformationsComponent } from "src/app/modals/settings/user-informat
 import { UserEditPasswordComponent } from "src/app/modals/settings/user-edit-password/user-edit-password.component";
 import { HouseQrcodeComponent } from "src/app/modals/settings/house-qrcode/house-qrcode.component";
 import { QRCodeModule } from "angularx-qrcode";
-import { HouseJoinComponent } from "src/app/modals/settings/house-join/house-join.component";
+import { HousesComponent } from "src/app/modals/houses/houses.component";
+import { AskHouseComponent } from "src/app/modals/houses/ask-house/ask-house.component";
+import { FoodCardComponent } from "src/app/components/food-card/food-card/food-card.component";
 
 @NgModule({
   imports: [
@@ -26,27 +28,31 @@ import { HouseJoinComponent } from "src/app/modals/settings/house-join/house-joi
     QRCodeModule,
   ],
   entryComponents: [
+    HousesComponent,
+    AskHouseComponent,
     SettingsComponent,
     UserPreferencesComponent,
     HouseCreateComponent,
     HouseQrcodeComponent,
     HouseInformationsComponent,
     HouseMembersComponent,
-    HouseJoinComponent,
     UserInformationsComponent,
     UserEditPasswordComponent,
+    FoodCardComponent,
   ],
   declarations: [
     HomePage,
+    HousesComponent,
+    AskHouseComponent,
     SettingsComponent,
     UserPreferencesComponent,
     HouseCreateComponent,
     HouseQrcodeComponent,
     HouseInformationsComponent,
     HouseMembersComponent,
-    HouseJoinComponent,
     UserInformationsComponent,
     UserEditPasswordComponent,
+    FoodCardComponent,
   ],
 })
 export class HomePageModule {}

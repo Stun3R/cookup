@@ -37,8 +37,6 @@ export class StoreConstants {
   public static readonly USER = "user";
 }
 
-export const Tamer = "Lol";
-
 export const RecipesCategories = {
   snack: "Apéritifs",
   appetizers: "Entrées",
