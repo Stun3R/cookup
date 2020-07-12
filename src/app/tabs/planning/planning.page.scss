@@ -2,6 +2,15 @@
   &__toolbar {
     &-title {
       font-size: 1.5rem;
+      padding-bottom: 6px;
+      padding-left: unset;
+      padding-right: unset;
+      -webkit-padding-start: 16px;
+      padding-inline-start: 16px;
+      -webkit-padding-end: 16px;
+      padding-inline-end: 16px;
+      text-align: left;
+      font-weight: 700;
     }
   }
   &__calendar {
@@ -25,6 +34,11 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+
+    &-today {
+      background-color: var(--ion-color-light);
+      color: var(--ion-color-dark);
+    }
 
     &-select {
       background-color: var(--ion-color-secondary);
