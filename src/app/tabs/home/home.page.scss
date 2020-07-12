@@ -2,6 +2,15 @@
   &__toolbar {
     &-title {
       font-size: 2rem;
+      padding-bottom: 6px;
+      padding-left: unset;
+      padding-right: unset;
+      -webkit-padding-start: 16px;
+      padding-inline-start: 16px;
+      -webkit-padding-end: 16px;
+      padding-inline-end: 16px;
+      text-align: left;
+      font-weight: 700;
     }
 
     &-avatar {
@@ -52,5 +61,34 @@ ion-item {
     &-content {
       margin: 12px 0px;
     }
+  }
+}
+
+.planning {
+  &__list {
+    &-infos {
+      display: flex;
+    }
+
+    &-icon {
+      margin: auto 5px auto 0;
+    }
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-text {
+      font-size: 0.75rem;
+    }
+
+    &-mb {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content {
+    --background: #f1f1f6;
   }
 }

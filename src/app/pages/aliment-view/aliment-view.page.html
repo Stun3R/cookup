@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        text="Retour"
+        *ngIf="!isEditable"
+        defaultHref="/private/planning"
+        color="info"
+      ></ion-back-button>
+      <ion-button (click)="isEditable = false" *ngIf="isEditable" color="info">
+        Annuler
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ aliment?.food?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="handleButton()"
+        color="info"
+        [class]="isEditable ? 'updatefood__btn-editable' : ''"
+      >
+        {{ isEditable ? "OK" : "Modifier" }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-thumbnail class="updatefood__content-tbn">
+    <img class="updatefood__content-img" [src]="aliment?.food?.image" />
+  </ion-thumbnail>
+
+  <form class="updatefood__form" [formGroup]="updateFoodForm">
+    <ion-grid class="updatefood__form-grid">
+      <ion-row class="ion-no-padding">
+        <ion-col size="8" class="ion-no-padding">
+          <ion-item>
+            <ion-label>
+              Quantité
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input
+              maxlength="20"
+              formControlName="quantity"
+              [readonly]="!isEditable"
+              type="number"
+              inputmode="decimal"
+              class="updatefood__form-txtr"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" class="ion-no-padding">
+          <ion-item class="updatefood__form-txtr">
+            <ion-text class="updatefood__form-txt">
+              {{ aliment?.food?.unit }}
+            </ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

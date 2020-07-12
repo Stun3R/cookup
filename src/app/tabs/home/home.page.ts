@@ -8,6 +8,8 @@ import gql from "graphql-tag";
 import { SettingsComponent } from "src/app/modals/settings/settings.component";
 import { HousesComponent } from "src/app/modals/houses/houses.component";
 
+import * as dayjs from "dayjs";
+
 @Component({
   selector: "app-home",
   templateUrl: "home.page.html",
@@ -24,6 +26,13 @@ export class HomePage implements OnInit {
   };
 
   private foods = [];
+  private meals = [];
+  private types = ["Petit déjeuner", "Déjeuner", "Dîner"];
+  private places = {
+    fridge: "Frigo",
+    freezer: "Congélateur",
+    pantry: "Cellier",
+  };
   private userId;
 
   constructor(
@@ -48,6 +57,7 @@ export class HomePage implements OnInit {
       await this.presentAskHouses();
     } else {
       await this.getFoodsExpiration();
+      await this.getTodayMeals();
     }
   }
 
@@ -85,6 +95,16 @@ export class HomePage implements OnInit {
       .request("get", "/foods/expire", ErrorMode.Toast)
       .toPromise();
     this.foods = foods || [];
+  }
+
+  async getTodayMeals() {
+    const meals = await this.strapi
+      .getEntries("meals", {
+        _sort: "type:ASC",
+        when: dayjs().format("YYYY-MM-DD"),
+      })
+      .toPromise();
+    this.meals = meals || [];
   }
 
   async presentUserPreferences() {

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { TabsPage } from "./tabs.page";
 import { StockViewResolverService } from "../resolver/stockViewResolver/stock-view-resolver.service";
 import { RecipeViewResolverService } from "../resolver/recipeViewResolver/recipe-view-resolver.service";
+import { AlimentViewResolverService } from "../resolver/alimentViewResolver/aliment-view-resolver.service";
 
 const routes: Routes = [
   {
@@ -18,6 +19,26 @@ const routes: Routes = [
         path: "home",
         loadChildren: () =>
           import("./home/home.module").then((m) => m.HomePageModule),
+      },
+      {
+        path: "home/aliments/:id",
+        resolve: {
+          data: AlimentViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/aliment-view/aliment-view.module").then(
+            (m) => m.AlimentViewPageModule
+          ),
+      },
+      {
+        path: "home/recipes/:id",
+        resolve: {
+          data: RecipeViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/recipe-view/recipe-view.module").then(
+            (m) => m.RecipeViewPageModule
+          ),
       },
       {
         path: "home/stocks/:id",
@@ -47,13 +68,13 @@ const routes: Routes = [
           ),
       },
       {
-        path: "planning/stocks/:id",
+        path: "planning/aliments/:id",
         resolve: {
-          data: StockViewResolverService,
+          data: AlimentViewResolverService,
         },
         loadChildren: () =>
-          import("../pages/stock-view/stock-view.module").then(
-            (m) => m.StockViewPageModule
+          import("../pages/aliment-view/aliment-view.module").then(
+            (m) => m.AlimentViewPageModule
           ),
       },
       {

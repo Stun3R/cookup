@@ -1,20 +1,6 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-title
-      class="home__toolbar-title"
-      style="
-        padding-bottom: 6px;
-        padding-left: unset;
-        padding-right: unset;
-        -webkit-padding-start: 16px;
-        padding-inline-start: 16px;
-        -webkit-padding-end: 16px;
-        padding-inline-end: 16px;
-        text-align: left;
-        font-weight: 700;
-      "
-      >Bienvenue</ion-title
-    >
+    <ion-title class="home__toolbar-title">Bienvenue</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="presentUserPreferences()">
         <ion-avatar slot="end" class="home__toolbar-avatar">
@@ -24,20 +10,7 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-title
-      class="home__toolbar-title"
-      style="
-        padding-bottom: 6px;
-        padding-left: unset;
-        padding-right: unset;
-        -webkit-padding-start: 16px;
-        padding-inline-start: 16px;
-        -webkit-padding-end: 16px;
-        padding-inline-end: 16px;
-        text-align: left;
-        font-weight: 700;
-      "
-    >
+    <ion-title class="home__toolbar-title">
       {{ user.username }}
     </ion-title>
   </ion-toolbar>
@@ -65,10 +38,116 @@
 
   <ion-text color="dark">
     <h5 class="home__title">
+      Repas prévus aujourd'hui
+    </h5>
+  </ion-text>
+  <ng-container *ngIf="meals.length > 0">
+    <ion-item-group *ngFor="let meal of meals">
+      <ion-card class="foods__card" style="margin-bottom: 5px;">
+        <ion-item-divider>
+          <ion-label>{{ types[meal?.type] }}</ion-label>
+        </ion-item-divider>
+
+        <ng-container *ngIf="meal?.recipes?.length > 0">
+          <ion-item
+            detail="true"
+            *ngFor="let recipe of meal?.recipes"
+            [routerLink]="['/private/home/recipes/' + recipe?.id]"
+          >
+            <ion-icon
+              slot="start"
+              [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
+            ></ion-icon>
+            <ion-label>
+              <h2>{{ recipe?.name }}</h2>
+              <p class="planning__list-infos">
+                <ion-icon
+                  class="planning__list-icon"
+                  name="hourglass-outline"
+                ></ion-icon>
+                {{ recipe?.preparation | dayjsRecipe:
+                "HH:mm:ss.SSS":recipe?.cooking }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="meal?.aliments?.length > 0">
+          <ion-item
+            *ngFor="let aliment of meal?.aliments"
+            [routerLink]="['/private/home/aliments/' + aliment?.id]"
+          >
+            <ion-icon
+              slot="start"
+              [src]="'assets/icon/food-categories/' + aliment?.food?.food_category?.icon"
+            >
+            </ion-icon>
+            <ion-label>
+              <h2 class="planning__list-content planning__list-mb">
+                {{ aliment?.food?.name }}
+                <ion-badge slot="end" color="secondary">
+                  {{ aliment?.quantity + aliment?.food?.unit }}
+                </ion-badge>
+              </h2>
+              <p class="planning__list-content planning__list-text">
+                <span
+                  [innerHTML]="aliment?.food?.expire_at | dayjsExpire"
+                  style="font-weight: 600;"
+                ></span>
+                <ion-text color="medium">
+                  {{ places[aliment?.food?.place] }}
+                </ion-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+      </ion-card>
+    </ion-item-group>
+  </ng-container>
+  <ng-container *ngIf="meals.length === 0">
+    <ion-card class="home__card">
+      <ion-item class="home__card-content">
+        <ion-icon
+          class="home__card-icon"
+          src="assets/icon/navbar/planning.svg"
+          slot="start"
+        >
+        </ion-icon>
+        <ion-text class="home__card-text">
+          Aucun repas prévu ajourd'hui
+        </ion-text>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+
+  <ion-text color="dark">
+    <h5 class="home__title">
       Expiration des aliments
     </h5>
   </ion-text>
-  <ion-card class="foods__card" *ngFor="let food of foods; let i = index">
-    <food-card root="home/stocks" [food]="food"></food-card>
-  </ion-card>
+
+  <ng-container *ngIf="foods.length > 0">
+    <ion-card
+      class="foods__card"
+      *ngFor="let food of foods; let i = index"
+      style="margin-bottom: 5px;"
+    >
+      <food-card root="home/stocks" [food]="food"></food-card>
+    </ion-card>
+  </ng-container>
+  <ng-container *ngIf="foods.length === 0">
+    <ion-card class="home__card">
+      <ion-item class="home__card-content">
+        <ion-icon
+          class="home__card-icon"
+          src="assets/icon/check.svg"
+          slot="start"
+        >
+        </ion-icon>
+        <ion-text class="home__card-text">
+          Aucun aliment expirés
+        </ion-text>
+      </ion-item>
+    </ion-card>
+  </ng-container>
 </ion-content>

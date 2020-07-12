@@ -12,7 +12,6 @@ import { FoodsSearchComponent } from "../modals/recipes/foods-search/foods-searc
 import { IonicSelectableModule } from "ionic-selectable";
 import { MealCreateComponent } from "../modals/planning/meal-create/meal-create.component";
 import { RecipesSearchComponent } from "../modals/planning/recipes-search/recipes-search.component";
-import { DayjsRecipePipe } from "../pipes/dates/dayjs-recipe.pipe";
 
 @NgModule({
   imports: [
@@ -37,7 +36,6 @@ import { DayjsRecipePipe } from "../pipes/dates/dayjs-recipe.pipe";
     FoodsSearchComponent,
     MealCreateComponent,
     RecipesSearchComponent,
-    DayjsRecipePipe,
   ],
 })
 export class TabsPageModule {}

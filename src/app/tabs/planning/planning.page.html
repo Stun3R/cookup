@@ -66,7 +66,7 @@
       <ng-container *ngIf="meal?.aliments?.length > 0">
         <ion-item
           *ngFor="let aliment of meal?.aliments"
-          [routerLink]="['/private/planning/stocks/' + aliment?.food?.id]"
+          [routerLink]="['/private/planning/aliments/' + aliment?.id]"
         >
           <ion-icon
             slot="start"
@@ -77,7 +77,7 @@
             <h2 class="planning__list-content planning__list-mb">
               {{ aliment?.food?.name }}
               <ion-badge slot="end" color="secondary">
-                {{ aliment?.quantity }}
+                {{ aliment?.quantity + aliment?.food?.unit }}
               </ion-badge>
             </h2>
             <p class="planning__list-content planning__list-text">
