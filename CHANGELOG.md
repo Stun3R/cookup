@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/Cook-Up/cookup/compare/v0.4.1...v1.0.0) (2020-07-14)
+
+
+### Features
+
+* **auth&planning:** finish register and modal first login ([506a3a0](https://github.com/Cook-Up/cookup/commit/506a3a090c3945742538deaf95121497b803ccc5))
+* **planning:** add aliments ([3c2fed6](https://github.com/Cook-Up/cookup/commit/3c2fed62626cb6774e1b8d2e108c53460aed6bac))
+* **planning:** add today highlight ([6ef9a0e](https://github.com/Cook-Up/cookup/commit/6ef9a0ed5beab3ab2657a55bf7ef4c2685654902))
+* **planning:** finish planning and shopping list ([d8f0cc6](https://github.com/Cook-Up/cookup/commit/d8f0cc67d550ca669c69a26fb72130f91ffbc819))
+
+
+### Bug Fixes
+
+* **clean css:** clean style in html file ([db96e6e](https://github.com/Cook-Up/cookup/commit/db96e6e1d23b78ec5dd8ec4ff4c1ea4b3ef8b135))
+
+
+### Build System
+
+* **deps:** bump websocket-extensions from 0.1.3 to 0.1.4 ([cff30e4](https://github.com/Cook-Up/cookup/commit/cff30e4b86d5fc21d74cff076fda0e39aabfe455))
+
 ### [0.4.1](https://github.com/Cook-Up/cookup/compare/v0.4.0...v0.4.1) (2020-06-09)
 
 
