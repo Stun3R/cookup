@@ -17,8 +17,7 @@ import { QRCodeModule } from "angularx-qrcode";
 import { HousesComponent } from "src/app/modals/houses/houses.component";
 import { AskHouseComponent } from "src/app/modals/houses/ask-house/ask-house.component";
 import { FoodCardComponent } from "src/app/components/food-card/food-card/food-card.component";
-import { DayjsExpirePipe } from "src/app/pipes/dates/dayjs-expire.pipe";
-import { DayjsRecipePipe } from "src/app/pipes/dates/dayjs-recipe.pipe";
+import { PipeModule } from "src/app/pipes/pipe.module";
 
 @NgModule({
   imports: [
@@ -28,6 +27,7 @@ import { DayjsRecipePipe } from "src/app/pipes/dates/dayjs-recipe.pipe";
     ReactiveFormsModule,
     HomePageRoutingModule,
     QRCodeModule,
+    PipeModule,
   ],
   entryComponents: [
     HousesComponent,
@@ -55,8 +55,6 @@ import { DayjsRecipePipe } from "src/app/pipes/dates/dayjs-recipe.pipe";
     UserInformationsComponent,
     UserEditPasswordComponent,
     FoodCardComponent,
-    DayjsExpirePipe,
-    DayjsRecipePipe,
   ],
 })
 export class HomePageModule {}

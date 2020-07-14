@@ -122,7 +122,14 @@
 </ion-header>
 
 <ion-content class="recipes__content">
-  <ion-searchbar placeholder="Rechercher une recette..."></ion-searchbar>
+  <ion-searchbar
+    placeholder="Rechercher une recette..."
+    (ionChange)="searchRecipes($event)"
+    (ionCancel)="cancelSearch()"
+    (ionFocus)="openSearch = true"
+    show-cancel-button="focus"
+    cancel-button-text="Annuler"
+  ></ion-searchbar>
 
   <ion-list>
     <ion-item-sliding

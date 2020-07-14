@@ -4,34 +4,44 @@
     <ion-buttons slot="end">
       <ion-button (click)="presentUserPreferences()">
         <ion-avatar slot="end" class="home__toolbar-avatar">
-          <img [src]="'https://eu.ui-avatars.com/api/?name=' + user.username" />
+          <img
+            [src]="'https://eu.ui-avatars.com/api/?name=' + user?.username"
+          />
         </ion-avatar>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
     <ion-title class="home__toolbar-title">
-      {{ user.username }}
+      {{ user?.username }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home__content">
-  <ion-text color="dark">
+<ion-content class="home__content" *ngIf="user">
+  <ion-text color="dark" *ngIf="user.current_house">
     <h5 class="home__title">
       État de la liste de course
     </h5>
   </ion-text>
-  <ion-card class="home__card">
-    <ion-item class="home__card-content" detail="true">
+  <ion-card class="home__card" *ngIf="user.current_house">
+    <ion-item
+      class="home__card-content"
+      (click)="navigate()"
+      [detail]="isToday()"
+    >
       <ion-icon
         class="home__card-icon"
         src="assets/icon/market.svg"
         slot="start"
       >
       </ion-icon>
-      <ion-text class="home__card-text">
+      <ion-text class="home__card-text" *ngIf="isToday()">
         Votre liste de course est prête
+      </ion-text>
+      <ion-text class="home__card-text" *ngIf="!isToday()">
+        Votre liste de course sera prête dans {{ when }} {{ when > 1 ? 'jours' :
+        'jour' }}
       </ion-text>
     </ion-item>
   </ion-card>

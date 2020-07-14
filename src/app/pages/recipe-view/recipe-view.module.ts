@@ -7,15 +7,16 @@ import { IonicModule } from "@ionic/angular";
 import { RecipeViewPageRoutingModule } from "./recipe-view-routing.module";
 
 import { RecipeViewPage } from "./recipe-view.page";
-import { DayjsRecipePipe } from "src/app/pipes/dates/dayjs-recipe.pipe";
+import { PipeModule } from "src/app/pipes/pipe.module";
 
 @NgModule({
   imports: [
+    PipeModule,
     CommonModule,
     FormsModule,
     IonicModule,
     RecipeViewPageRoutingModule,
   ],
-  declarations: [RecipeViewPage, DayjsRecipePipe],
+  declarations: [RecipeViewPage],
 })
 export class RecipeViewPageModule {}

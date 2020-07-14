@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        text="Retour"
+        defaultHref="/private/home"
+        color="info"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Liste de course</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title color="medium" size="small" style="font-size: 16px; padding: 0;">
+      {{ shoppingList?.when | date }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="toExport">
+  <ion-list>
+    <ion-item-group *ngFor="let key of foodCategories">
+      <ion-item-divider>
+        <ion-label>{{ key }}</ion-label>
+      </ion-item-divider>
+
+      <ion-item
+        *ngFor="let item of shoppingList.shopping_items[key]; let i = index"
+        (click)="checkFood(item, key, i)"
+      >
+        <ion-checkbox
+          *ngIf="item?.bought"
+          checked="true"
+          color="secondary"
+          disabled="true"
+          slot="start"
+        ></ion-checkbox>
+        <ion-label>
+          <h2 class="food-content food-mb">
+            {{ item?.food?.name }}
+            <ion-badge slot="end" color="secondary">
+              {{ item?.food?.quantity < 0 ? item?.food?.quantity * -1 :
+              item?.food?.quantity }} {{ item?.food?.unit }}
+            </ion-badge>
+          </h2>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

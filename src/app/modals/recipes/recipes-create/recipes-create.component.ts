@@ -85,7 +85,6 @@ export class RecipesCreateComponent implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-    console.log(data);
     if (data) {
       this.ingredients.push(
         this.formBuilder.control({

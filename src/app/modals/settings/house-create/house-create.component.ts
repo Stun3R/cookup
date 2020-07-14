@@ -61,7 +61,7 @@ export class HouseCreateComponent implements OnInit {
     this.createHomeForm = this.formBuilder.group({
       users: [[this.user.id], Validators.required],
       name: ["", [Validators.required, Validators.maxLength(20)]],
-      list_at: [1, [Validators.required, Validators.min(1), Validators.max(7)]],
+      list_at: [0, [Validators.required, Validators.min(0), Validators.max(6)]],
     });
   }
 

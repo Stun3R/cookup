@@ -12,6 +12,7 @@ import { FoodsSearchComponent } from "../modals/recipes/foods-search/foods-searc
 import { IonicSelectableModule } from "ionic-selectable";
 import { MealCreateComponent } from "../modals/planning/meal-create/meal-create.component";
 import { RecipesSearchComponent } from "../modals/planning/recipes-search/recipes-search.component";
+import { PipeModule } from "../pipes/pipe.module";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { RecipesSearchComponent } from "../modals/planning/recipes-search/recipe
     ReactiveFormsModule,
     TabsPageRoutingModule,
     IonicSelectableModule,
+    PipeModule,
   ],
   entryComponents: [
     FoodCreateComponent,

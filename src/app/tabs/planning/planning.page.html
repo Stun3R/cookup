@@ -9,6 +9,7 @@
       <div
         class="planning__date"
         [class.planning__date-select]="isSame(day)"
+        [class.planning__date-today]="isToday(day)"
         (click)="selectDate(day)"
         *ngFor="let day of days"
       >
@@ -21,63 +22,86 @@
 
 <ion-content class="planning__content">
   <ion-list>
-    <ion-item-group *ngFor="let meal of meals">
+    <ion-item-group *ngFor="let meal of meals; let i = index">
       <ion-item-divider sticky="true">
         <ion-label>{{ types[meal?.type] }}</ion-label>
       </ion-item-divider>
 
       <ng-container *ngIf="meal?.recipes?.length > 0">
-        <ion-item
-          detail="true"
-          *ngFor="let recipe of meal?.recipes"
-          [routerLink]="['/private/planning/recipes/' + recipe?.id]"
+        <ion-item-sliding
+          *ngFor="let recipe of meal?.recipes; let childIndex = index"
         >
-          <ion-icon
-            slot="start"
-            [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
-          ></ion-icon>
-          <ion-label>
-            <h2>{{ recipe?.name }}</h2>
-            <p class="planning__list-infos">
-              <ion-icon
-                class="planning__list-icon"
-                name="hourglass-outline"
-              ></ion-icon>
-              {{ recipe?.preparation | dayjsRecipe:
-              "HH:mm:ss.SSS":recipe?.cooking }}
-            </p>
-          </ion-label>
-        </ion-item>
+          <ion-item
+            detail="true"
+            (click)="navigate('recipes', recipe?.id, meal?.when)"
+          >
+            <ion-icon
+              slot="start"
+              [src]="'/assets/icon/recipe-categories/' + recipe?.category + '.svg'"
+            ></ion-icon>
+            <ion-label>
+              <h2>{{ recipe?.name }}</h2>
+              <p class="planning__list-infos">
+                <ion-icon
+                  class="planning__list-icon"
+                  name="hourglass-outline"
+                ></ion-icon>
+                {{ recipe?.preparation | dayjsRecipe:
+                "HH:mm:ss.SSS":recipe?.cooking }}
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item-options side="end" *ngIf="!isBeforeListAt(meal?.when)">
+            <ion-item-option
+              color="danger"
+              (click)="deleteRecipe(i, childIndex)"
+            >
+              <ion-icon slot="icon-only" name="trash" size="small"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
       </ng-container>
 
       <ng-container *ngIf="meal?.aliments?.length > 0">
-        <ion-item
-          *ngFor="let aliment of meal?.aliments"
-          [routerLink]="['/private/planning/aliments/' + aliment?.id]"
+        <ion-item-sliding
+          *ngFor="let aliment of meal?.aliments; let childIndex = index"
         >
-          <ion-icon
-            slot="start"
-            [src]="'assets/icon/food-categories/' + aliment?.food?.food_category?.icon"
+          <ion-item
+            [detail]="!isBeforeListAt(meal?.when)"
+            (click)="navigate('aliments', meal?.when, aliment?.id)"
           >
-          </ion-icon>
-          <ion-label>
-            <h2 class="planning__list-content planning__list-mb">
-              {{ aliment?.food?.name }}
-              <ion-badge slot="end" color="secondary">
-                {{ aliment?.quantity + aliment?.food?.unit }}
-              </ion-badge>
-            </h2>
-            <p class="planning__list-content planning__list-text">
-              <span
-                [innerHTML]="aliment?.food?.expire_at | dayjsExpire"
-                style="font-weight: 600;"
-              ></span>
-              <ion-text color="medium">
-                {{ places[aliment?.food?.place] }}
-              </ion-text>
-            </p>
-          </ion-label>
-        </ion-item>
+            <ion-icon
+              slot="start"
+              [src]="'assets/icon/food-categories/' + aliment?.food?.food_category?.icon"
+            >
+            </ion-icon>
+            <ion-label>
+              <h2 class="planning__list-content planning__list-mb">
+                {{ aliment?.food?.name }}
+                <ion-badge slot="end" color="secondary">
+                  {{ aliment?.quantity + aliment?.food?.unit }}
+                </ion-badge>
+              </h2>
+              <p class="planning__list-content planning__list-text">
+                <span
+                  [innerHTML]="aliment?.food?.expire_at | dayjsExpire"
+                  style="font-weight: 600;"
+                ></span>
+                <ion-text color="medium">
+                  {{ places[aliment?.food?.place] }}
+                </ion-text>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item-options side="end" *ngIf="!isBeforeListAt(meal?.when)">
+            <ion-item-option
+              color="danger"
+              (click)="deleteAliment(aliment?.id, i, childIndex)"
+            >
+              <ion-icon slot="icon-only" name="trash" size="small"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
       </ng-container>
     </ion-item-group>
   </ion-list>

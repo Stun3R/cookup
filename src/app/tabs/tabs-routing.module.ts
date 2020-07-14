@@ -4,6 +4,7 @@ import { TabsPage } from "./tabs.page";
 import { StockViewResolverService } from "../resolver/stockViewResolver/stock-view-resolver.service";
 import { RecipeViewResolverService } from "../resolver/recipeViewResolver/recipe-view-resolver.service";
 import { AlimentViewResolverService } from "../resolver/alimentViewResolver/aliment-view-resolver.service";
+import { ShoppingListViewResolverService } from "../resolver/shoppingListViewResolver/shopping-list-view-resolver.service";
 
 const routes: Routes = [
   {
@@ -19,6 +20,16 @@ const routes: Routes = [
         path: "home",
         loadChildren: () =>
           import("./home/home.module").then((m) => m.HomePageModule),
+      },
+      {
+        path: "home/shopping-list/:when",
+        resolve: {
+          data: ShoppingListViewResolverService,
+        },
+        loadChildren: () =>
+          import("../pages/shoppinglist-view/shoppinglist-view.module").then(
+            (m) => m.ShoppinglistViewPageModule
+          ),
       },
       {
         path: "home/aliments/:id",

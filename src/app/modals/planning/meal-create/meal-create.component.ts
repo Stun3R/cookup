@@ -8,6 +8,17 @@ import * as dayjs from "dayjs";
 import { RecipesSearchComponent } from "../recipes-search/recipes-search.component";
 import { AtleastOne } from "src/app/helpers/forms/atleast-one.validator";
 
+require("dayjs/locale/fr");
+dayjs.locale("fr");
+const weekday = require("dayjs/plugin/weekday");
+dayjs.extend(weekday);
+
+declare module "dayjs" {
+  interface Dayjs {
+    weekday(int: number);
+  }
+}
+
 @Component({
   selector: "app-meal-create",
   templateUrl: "./meal-create.component.html",
@@ -17,11 +28,17 @@ export class MealCreateComponent implements OnInit {
   @Input() user: User;
   private createMealForm: FormGroup;
   private loading: HTMLIonLoadingElement;
+  private now = dayjs();
+  private weekday;
   private types = ["Petit déjeuner", "Déjeuner", "Dîner"];
   private places = {
     0: "Frigo",
     1: "Congélateur",
     2: "Cellier",
+  };
+  private dateLimits = {
+    min: null,
+    max: null,
   };
 
   constructor(
@@ -32,9 +49,18 @@ export class MealCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const list_at = this.user.current_house.list_at;
+    this.dateLimits.min = dayjs()
+      .weekday(list_at)
+      .add(7, "day")
+      .format("YYYY-MM-DD");
+    this.dateLimits.max = dayjs()
+      .weekday(list_at)
+      .add(14, "day")
+      .format("YYYY-MM-DD");
     this.createMealForm = this.formBuilder.group(
       {
-        when: [dayjs().toString()],
+        when: [this.dateLimits.min],
         type: [0, [Validators.required]],
         recipes: this.formBuilder.array([]),
         aliments: this.formBuilder.array([]),
@@ -89,7 +115,6 @@ export class MealCreateComponent implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
-    console.log(data);
     if (data) {
       this.aliments.push(
         this.formBuilder.control({
@@ -116,7 +141,6 @@ export class MealCreateComponent implements OnInit {
       this.createMealForm.patchValue({
         when: dayjs(this.createMealForm.controls.when.value).toISOString(),
       });
-      console.log(this.createMealForm.value);
       const meal = await this.strapi
         .createEntry("meals", this.createMealForm.value)
         .toPromise();

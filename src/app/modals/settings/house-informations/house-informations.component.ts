@@ -42,7 +42,7 @@ export class HouseInformationsComponent implements OnInit {
       name: [this.house?.name, [Validators.required, Validators.maxLength(20)]],
       list_at: [
         this.house?.list_at,
-        [Validators.required, Validators.min(1), Validators.max(7)],
+        [Validators.required, Validators.min(0), Validators.max(6)],
       ],
     });
   }

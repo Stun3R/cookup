@@ -5,6 +5,7 @@ import { StrapiService } from "src/app/services/strapi/strapi.service";
 import { ToastController } from "@ionic/angular";
 import { User, StoreConstants, RecipesCategories } from "src/app/interfaces";
 import gql from "graphql-tag";
+import { Subscription } from "rxjs";
 
 type Category = "all" | "snack" | "appetizers" | "dish" | "dessert" | "drink";
 
@@ -17,6 +18,8 @@ export class RecipesPage {
   private currentCategory: Category = "all";
   private currentHouseId: number;
   private categories = RecipesCategories;
+  private recipesSubscription: Subscription;
+  private openSearch: boolean = false;
   private recipes = {
     all: [],
     snack: [],
@@ -73,11 +76,6 @@ export class RecipesPage {
               },
       })
       .toPromise();
-    if (this.recipes[category].length) {
-      return (this.recipes[category] = this.recipes[category].concat(
-        response.data.recipes
-      ));
-    }
     this.recipes[category] = response.data.recipes;
   }
 
@@ -114,5 +112,78 @@ export class RecipesPage {
       duration: 2000,
     });
     toast.present();
+  }
+
+  async cancelSearch() {
+    this.openSearch = false;
+    await this.getRecipesByCategory(this.currentCategory);
+  }
+
+  searchRecipes($event: { target: { value: string } }) {
+    let text = $event.target.value.trim().toLowerCase();
+    // BOOLEAN START SEARCH
+
+    // Close any running subscription.
+    if (this.recipesSubscription) {
+      this.recipesSubscription.unsubscribe();
+    }
+
+    if (!text) {
+      // Close any running subscription.
+      if (this.recipesSubscription) {
+        this.recipesSubscription.unsubscribe();
+      }
+
+      if (this.openSearch === true) {
+        this.recipes[this.currentCategory] = [];
+      }
+
+      return;
+    }
+
+    this.recipesSubscription = this.apollo
+      .query<any>({
+        query: gql`
+          query RecipesByCategories(
+            $house: ID
+            $category: String
+            $name: String
+            $limit: Int
+          ) {
+            recipes(
+              limit: $limit
+              where: {
+                house: $house
+                category: $category
+                name_contains: $name
+              }
+            ) {
+              id
+              name
+              category
+              cooking
+              preparation
+            }
+          }
+        `,
+        variables:
+          this.currentCategory === "all"
+            ? { house: this.currentHouseId, limit: -1, name: text }
+            : {
+                house: this.currentHouseId,
+                category: this.currentCategory,
+                limit: -1,
+                name: text,
+              },
+      })
+      .subscribe((response: any) => {
+        // Subscription will be closed when unsubscribed manually.
+        if (this.recipesSubscription.closed) {
+          return;
+        }
+
+        this.recipes[this.currentCategory] = response.data.recipes;
+        // BOOLEAN STOP SEARCH
+      });
   }
 }

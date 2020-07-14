@@ -5,6 +5,7 @@ import { StorageService } from "src/app/services/storage/storage.service";
 import { User, StoreConstants } from "src/app/interfaces";
 import { StrapiService } from "src/app/services/strapi/strapi.service";
 import { ToastController } from "@ionic/angular";
+import { Subscription } from "rxjs";
 
 type Place = "all" | "fridge" | "freezer" | "pantry";
 
@@ -16,6 +17,7 @@ type Place = "all" | "fridge" | "freezer" | "pantry";
 export class StocksPage implements OnInit {
   private currentPlace: Place = "all";
   private currentHouseId: number;
+  private openSearch: boolean = false;
   private places = {
     fridge: "Frigo",
     freezer: "Congélateur",
@@ -33,6 +35,8 @@ export class StocksPage implements OnInit {
     freezer: 0,
     pantry: 0,
   };
+
+  private foodsSubscription: Subscription;
 
   constructor(
     private apollo: Apollo,
@@ -86,11 +90,6 @@ export class StocksPage implements OnInit {
               },
       })
       .toPromise();
-    if (this.foods[place].length) {
-      return (this.foods[place] = this.foods[place].concat(
-        response.data.foods
-      ));
-    }
     this.foods[place] = response.data.foods;
   }
 
@@ -126,5 +125,77 @@ export class StocksPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+
+  async cancelSearch() {
+    this.openSearch = false;
+    await this.getFoodsCount();
+    await this.getFoodsByPlace(this.currentPlace);
+  }
+
+  searchFoods($event: { target: { value: string } }) {
+    let text = $event.target.value.trim().toLowerCase();
+    // BOOLEAN START SEARCH
+
+    // Close any running subscription.
+    if (this.foodsSubscription) {
+      this.foodsSubscription.unsubscribe();
+    }
+
+    if (!text) {
+      // Close any running subscription.
+      if (this.foodsSubscription) {
+        this.foodsSubscription.unsubscribe();
+      }
+
+      if (this.openSearch === true) {
+        this.foods[this.currentPlace] = [];
+      }
+
+      return;
+    }
+
+    this.foodsSubscription = this.apollo
+      .query<any>({
+        query: gql`
+          query Foods($place: String, $limit: Int, $house: ID, $name: String) {
+            foods(
+              limit: $limit
+              where: { place: $place, house: $house, name_contains: $name }
+            ) {
+              id
+              name
+              quantity
+              unit
+              place
+              expire_at
+              food_category {
+                id
+                name
+                icon
+              }
+            }
+          }
+        `,
+        variables:
+          this.currentPlace === "all"
+            ? { house: this.currentHouseId, limit: -1, name: text }
+            : {
+                house: this.currentHouseId,
+                place: this.currentPlace,
+                limit: -1,
+                name: text,
+              },
+      })
+      .subscribe((response: any) => {
+        // Subscription will be closed when unsubscribed manually.
+        if (this.foodsSubscription.closed) {
+          return;
+        }
+
+        this.foods[this.currentPlace] = response.data.foods;
+        this.countPlaces[this.currentPlace] = response.data.foods.length;
+        // BOOLEAN STOP SEARCH
+      });
   }
 }

@@ -67,7 +67,14 @@
 </ion-header>
 
 <ion-content class="stocks__content">
-  <ion-searchbar placeholder="Rechercher un aliment..."></ion-searchbar>
+  <ion-searchbar
+    placeholder="Rechercher un aliment..."
+    (ionChange)="searchFoods($event)"
+    (ionCancel)="cancelSearch()"
+    (ionFocus)="openSearch = true"
+    show-cancel-button="focus"
+    cancel-button-text="Annuler"
+  ></ion-searchbar>
 
   <ion-list>
     <ion-item-sliding *ngFor="let food of foods[currentPlace]; let i = index">

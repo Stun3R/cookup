@@ -33,8 +33,8 @@
       <ion-datetime
         formControlName="when"
         displayFormat="DD/MM/YYYY"
-        min="2020"
-        max="2100"
+        [min]="dateLimits.min"
+        [max]="dateLimits.max"
       ></ion-datetime>
     </ion-item>
 
