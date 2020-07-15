@@ -50,7 +50,7 @@ export class ShoppinglistViewPage implements OnInit {
   async presentAlertPrompt(id, key, i) {
     const alert = await this.alertController.create({
       header: "Confirmation d'achat",
-      message: "Veuillez renseigner la quantité acheté pour ce produit",
+      message: "Veuillez renseigner la quantité achetée pour ce produit",
       inputs: [
         {
           name: "quantity",
