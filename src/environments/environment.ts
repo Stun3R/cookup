@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://192.168.1.26:1337",
-  domain: "192.168.1.26:1337",
+  //apiUrl: "http://192.168.1.26:1337",
+  //domain: "192.168.1.26:1337",
   //apiUrl: "http://localhost:1337",
-  //apiUrl: "https://dev-cookup-api.herokuapp.com",
-  //domain: "dev-cookup-api.herokuapp.com",
+  apiUrl: "https://dev-cookup-api.herokuapp.com",
+  domain: "dev-cookup-api.herokuapp.com",
 };
 
 /*

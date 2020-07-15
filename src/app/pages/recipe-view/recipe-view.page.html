@@ -51,7 +51,7 @@
           src="assets/icon/recipes/prepare.svg"
         ></ion-icon>
         <span class="recipe__title-infos">
-          {{ recipe?.preparation | dayjsRecipe:'HH:mm:ss.SSS' }}
+          {{ recipe?.preparation | dayjsRecipe:'HH:mm:ss' }}
         </span>
         <span class="recipe__title-divider"></span>
         <ion-icon
@@ -59,7 +59,7 @@
           src="assets/icon/recipes/cook.svg"
         ></ion-icon>
         <span class="recipe__title-infos">
-          {{ recipe?.cooking | dayjsRecipe:'HH:mm:ss.SSS' }}
+          {{ recipe?.cooking | dayjsRecipe:'HH:mm:ss' }}
         </span>
       </ion-text>
     </ion-list-header>

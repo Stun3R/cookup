@@ -112,11 +112,11 @@ export class RecipesCreateComponent implements OnInit {
         cooking: dayjs(
           this.createRecipeForm.controls.cooking.value,
           "HH:mm:ss"
-        ).format("HH:mm:ss.SSS"),
+        ).format("HH:mm:ss"),
         preparation: dayjs(
           this.createRecipeForm.controls.preparation.value,
           "HH:mm:ss"
-        ).format("HH:mm:ss.SSS"),
+        ).format("HH:mm:ss"),
       });
       const food = await this.strapi
         .createEntry("recipes", this.createRecipeForm.value)

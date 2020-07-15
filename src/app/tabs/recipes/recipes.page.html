@@ -147,20 +147,11 @@
               class="recipes__list-icon"
               name="hourglass-outline"
             ></ion-icon>
-            {{ recipe?.preparation | dayjsRecipe:'HH:mm:ss.SSS':recipe?.cooking
-            }}
+            {{ recipe?.preparation | dayjsRecipe:'HH:mm:ss':recipe?.cooking }}
           </p>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option color="info">
-          <ion-icon
-            slot="icon-only"
-            name="pencil-outline"
-            size="small"
-            color="light"
-          ></ion-icon>
-        </ion-item-option>
         <ion-item-option color="danger" (click)="deleteRecipe(recipe?.id, i)">
           <ion-icon slot="icon-only" name="trash" size="small"></ion-icon>
         </ion-item-option>

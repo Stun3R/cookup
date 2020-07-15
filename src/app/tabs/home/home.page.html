@@ -75,8 +75,8 @@
                   class="planning__list-icon"
                   name="hourglass-outline"
                 ></ion-icon>
-                {{ recipe?.preparation | dayjsRecipe:
-                "HH:mm:ss.SSS":recipe?.cooking }}
+                {{ recipe?.preparation | dayjsRecipe: "HH:mm:ss":recipe?.cooking
+                }}
               </p>
             </ion-label>
           </ion-item>
@@ -155,7 +155,7 @@
         >
         </ion-icon>
         <ion-text class="home__card-text">
-          Aucun aliment expirés
+          Aucun aliment expiré
         </ion-text>
       </ion-item>
     </ion-card>

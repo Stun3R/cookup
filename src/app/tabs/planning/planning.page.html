@@ -46,8 +46,8 @@
                   class="planning__list-icon"
                   name="hourglass-outline"
                 ></ion-icon>
-                {{ recipe?.preparation | dayjsRecipe:
-                "HH:mm:ss.SSS":recipe?.cooking }}
+                {{ recipe?.preparation | dayjsRecipe: "HH:mm:ss":recipe?.cooking
+                }}
               </p>
             </ion-label>
           </ion-item>
