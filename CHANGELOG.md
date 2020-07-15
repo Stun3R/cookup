@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/Cook-Up/cookup/compare/v1.0.0...v1.0.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* **planning:date:** change dayjs() start format in order to remove Invalid Date ([02d2173](https://github.com/Cook-Up/cookup/commit/02d2173cb3c1d5be5f6760ad518580edb1a471c6))
+
 ## [1.0.0](https://github.com/Cook-Up/cookup/compare/v0.4.1...v1.0.0) (2020-07-14)
 
 
