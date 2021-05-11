@@ -46,7 +46,7 @@
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
     "ionic-selectable": "^4.7.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "qs": "^6.9.4",
     "rxjs": "~6.5.1",
