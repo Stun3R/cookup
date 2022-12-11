@@ -48,7 +48,7 @@
     "ionic-selectable": "^4.7.1",
     "lodash": "^4.17.19",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
